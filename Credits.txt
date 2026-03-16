@@ -1,0 +1,45 @@
+ArkComposer — Third-Party Credits
+==================================
+
+JUCE Framework
+  Author  : Raw Material Software / JUCE Team
+  License : JUCE 8 Starter License (free tier, revenue < $50k/year)
+  URL     : https://juce.com
+
+FluidSynth (fluidsynth.exe, libfluidsynth-3.dll)
+  Author  : Peter Hanappe and contributors
+  License : GNU Lesser General Public License v2.1 (LGPL)
+  URL     : https://github.com/FluidSynth/fluidsynth
+
+LAME MP3 Encoder (lame.exe)
+  Author  : Mike Cheng, Mark Taylor, and contributors
+  License : GNU Lesser General Public License v2 (LGPL)
+  URL     : https://lame.sourceforge.io
+
+SDL3 (SDL3.dll)
+  Author  : Sam Lantinga and contributors
+  License : zlib License
+  URL     : https://libsdl.org
+
+libsndfile (sndfile.dll)
+  Author  : Erik de Castro Lopo and contributors
+  License : GNU Lesser General Public License v2.1 (LGPL)
+  URL     : https://libsndfile.github.io/libsndfile/
+
+MuseScore_General.sf2
+  Author  : S. Christian Collins (based on FluidR3 by Frank Wen)
+  License : MIT License
+  URL     : https://github.com/musescore/MuseScore/tree/master/share/sound
+
+FluidR3_GM2.sf2
+  Author  : Frank Wen
+  License : MIT License
+  URL     : https://www.fluidsynth.org
+
+------------------------------------------------------------------
+LGPL notice:
+Users of ArkComposer may replace the LGPL-licensed libraries
+(FluidSynth, LAME, libsndfile) with their own builds if desired.
+These libraries are provided as separate .dll / .exe files
+and are not statically linked into ArkComposer.exe.
+------------------------------------------------------------------
