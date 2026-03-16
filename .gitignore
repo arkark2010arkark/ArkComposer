@@ -1,1 +1,4 @@
-SoundFonts/
+SoundFonts/*
+!SoundFonts/GeneralUser GS v1.471.sf2
+!SoundFonts/GeneralUser_GS_SoftSynth_v1.44.sf2
+log/
