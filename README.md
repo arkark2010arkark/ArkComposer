@@ -11,7 +11,7 @@
 
 ## 👨‍💻 About the Author
 
-**Park Byoung Gu (박병구)** ark2010@naver.com
+**Park Byoung Gu (박병구)**
 
 Director & SW Group Manager at **[AXT (Ajinextek)](https://www.ajinextek.com)** — a leading company in industrial motion controller markets — where he leads software R&D.
 
@@ -144,10 +144,15 @@ ArkComposer exposes a full score editing API over MCP:
 - `lame.exe` in `Tools/` folder — required for MP3 export ([download](https://lame.sourceforge.io/))
 
 ### SoundFonts
-Place `.sf2` files in the `SoundFonts/` folder.  
 ArkComposer ships with:
-- `MuseScore_General.sf2` — MIT License (S. Christian Collins)
-- `FluidR3_GM2.sf2` — MIT License (Frank Wen)
+- `GeneralUser GS v1.471.sf2` — GeneralUser GS License v2.0 (S. Christian Collins)
+- `GeneralUser_GS_SoftSynth_v1.44.sf2` — GeneralUser GS License v2.0 (S. Christian Collins)
+
+Additional high-quality SoundFonts (optional):
+- [MuseScore General](https://ftp.osuosl.org/pub/musescore/soundfont/MuseScore_General/) — MIT License
+- [FluidR3 GM](https://member.keymusician.com/Member/FluidR3_GM/) — MIT License
+
+Place `.sf2` files in the `SoundFonts/` folder.
 
 ### Download
 👉 **[Latest Release](https://github.com/arkark2010arkark/ArkComposer/releases/latest)**
@@ -168,8 +173,8 @@ ArkComposer ships with:
 | Component | Author | License |
 |-----------|--------|---------|
 | JUCE Framework | Raw Material Software | JUCE Starter |
-| MuseScore_General.sf2 | S. Christian Collins (based on FluidR3 by Frank Wen) | MIT |
-| FluidR3_GM2.sf2 | Frank Wen | MIT |
+| GeneralUser GS v1.471.sf2 | S. Christian Collins | GeneralUser GS License v2.0 |
+| GeneralUser_GS_SoftSynth_v1.44.sf2 | S. Christian Collins | GeneralUser GS License v2.0 |
 | FluidSynth | Peter Hanappe and contributors | LGPL 2.1 |
 | LAME MP3 Encoder | Mark Taylor and contributors | LGPL 2 |
 | SDL3 | Sam Lantinga and contributors | zlib |
@@ -189,4 +194,4 @@ Source code is proprietary and not included in this distribution.
 ---
 
 *Built with C++ and [JUCE](https://juce.com/)*  
-*Website: [arkcomposer.com](https://arkcomposer.com)*  : under
+*Website: [arkcomposer.com](https://arkcomposer.com)*
