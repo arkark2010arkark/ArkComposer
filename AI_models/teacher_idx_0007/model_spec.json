@@ -1,0 +1,13 @@
+{
+  "id": "teacher_idx_0007",
+  "display_name": "Teacher Index 0007",
+  "capabilities": [
+    "voice_leading",
+    "accompaniment",
+    "drum_accompaniment",
+    "chord_groove"
+  ],
+  "supports_accompaniment": true,
+  "supports_drum": true,
+  "supports_voice_leading": true
+}
