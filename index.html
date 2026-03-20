@@ -331,6 +331,14 @@
     margin-top: 2px;
   }
   .demo-steps .ko { color: var(--text3); font-size: 10px; display: block; margin-top: 4px; }
+  .codex-layout { display: grid; grid-template-columns: 1fr; gap: 28px; }
+  .codex-shot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .codex-shot { background: var(--surface); border: 1px solid var(--border); padding: 16px; }
+  .codex-shot img { width: 100%; display: block; border: 1px solid var(--border); }
+  .codex-shot p { margin-top: 12px; font-size: 11px; color: var(--text3); line-height: 1.8; }
+  .codex-shot-large { background: var(--surface); border: 1px solid var(--border); padding: 18px; }
+  .codex-shot-large img { width: 100%; display: block; border: 1px solid var(--border); }
+  .codex-shot-large p { margin-top: 14px; font-size: 11px; color: var(--text2); line-height: 1.9; }
 
   /* TOOLS TABLE */
   .tools-section { position: relative; z-index: 1; padding: 0 48px 120px; max-width: 1200px; margin: 0 auto; }
@@ -392,7 +400,7 @@
     .notice-banner { padding: 12px 24px; }
     .hero { padding: 60px 24px 60px; }
     .features, .mcp-section, .demo-section, .tools-section, .author-section, .contact-section { padding-left: 24px; padding-right: 24px; }
-    .mcp-grid, .demo-grid { grid-template-columns: 1fr; }
+    .mcp-grid, .demo-grid, .codex-shot-grid { grid-template-columns: 1fr; }
     .author-card { grid-template-columns: 1fr; gap: 32px; padding: 36px 24px; }
     .download-section { padding: 0 24px 80px; }
     footer { flex-direction: column; gap: 20px; text-align: center; }
@@ -440,13 +448,14 @@
   <p class="hero-sub">Compose music through conversation with AI</p>
   <p class="hero-desc">
     A full-featured music notation and composition tool with a built-in MCP server.<br>
-    Connect Claude Code Desktop or any LLM and compose together — in natural language.<br>
+    Connect Claude Code Desktop, Codex app, or any MCP-capable AI client and compose together — in natural language.<br>
     <span class="ko">악보 편집부터 AI 작곡까지 — 대화로 음악을 만드는 새로운 방법.</span>
   </p>
   <div class="hero-cta">
     <a href="#download" class="btn-primary">↓ Download Free &nbsp;·&nbsp; 무료 다운로드</a>
     <a href="https://github.com/arkark2010arkark/ArkComposer" class="btn-secondary" target="_blank">GitHub →</a>
     <a href="claude-desktop-guide.html" class="btn-secondary">Claude Desktop Guide →</a>
+    <a href="CodeX-App-guide.html" class="btn-secondary">Codex App Guide →</a>
   </div>
 </section>
 
@@ -544,23 +553,42 @@
     <div class="mcp-card reveal">
       <div class="mcp-card-header">
         <span class="mcp-badge">✅ Tested</span>
-        <span class="mcp-card-title">Mode 2 — TCP · Codex CLI</span>
+        <span class="mcp-card-title">Mode 2 — HTTP/SSE · Codex App</span>
       </div>
       <div style="font-size:11px; color:var(--text2); line-height:1.8; margin-bottom:16px;">
-        Start the MCP TCP server from the app UI, then connect any MCP-compatible client.<br>
-        <span style="color:var(--text3)">앱 내에서 TCP 서버를 시작하고 MCP 클라이언트로 연결합니다.</span>
+        Start the MCP server from the ArkComposer UI, then register the HTTP/SSE endpoint in the Codex app MCP settings.<br>
+        <span style="color:var(--text3)">ArkComposer에서 MCP 서버를 켠 뒤, Codex app MCP 설정에 HTTP/SSE 주소를 등록합니다.</span>
       </div>
       <div class="code-block">
 <span class="comment"># 1. Run ArkComposer normally</span>
-<span class="comment"># 2. Left palette → MCP Server</span>
-<span class="comment"># 3. Enter port (e.g. 7890) → Start</span>
-<span class="comment"># 4. Connect your client to:</span>
+<span class="comment"># 2. Left palette → MCP Server → Start</span>
+<span class="comment"># 3. Open Codex app → Settings → MCP servers</span>
+<span class="comment"># 4. Set URL to:</span>
 
-localhost:<span class="val">7890</span>
+http://localhost:<span class="val">9101</span>/sse
+      </div>
+    </div>
+    <div class="mcp-card reveal">
+      <div class="mcp-card-header">
+        <span class="mcp-badge">✅ Tested</span>
+        <span class="mcp-card-title">Mode 3 — TCP · Advanced / CLI</span>
+      </div>
+      <div style="font-size:11px; color:var(--text2); line-height:1.8; margin-bottom:16px;">
+        For raw JSON-RPC clients, use the TCP port exposed by ArkComposer. This is useful for Codex CLI or custom MCP tooling.<br>
+        <span style="color:var(--text3)">raw JSON-RPC 클라이언트는 ArkComposer의 TCP 포트에 직접 연결할 수 있습니다. Codex CLI나 커스텀 도구에 적합합니다.</span>
+      </div>
+      <div class="code-block">
+<span class="comment"># 1. Run ArkComposer normally</span>
+<span class="comment"># 2. Left palette → MCP Server → Start</span>
+<span class="comment"># 3. Connect your client to:</span>
+
+localhost:<span class="val">9100</span>
       </div>
     </div>
   </div>
   <div style="margin-top:24px; padding:24px 36px; background:var(--bg2); border:1px solid var(--border); font-size:11px; color:var(--text3); line-height:2;" class="reveal">
+    <span style="color:var(--accent)">Note for Codex app:</span> If you want to switch between HTTP/SSE and stdio inside the Codex app, uninstall the existing ArkComposer MCP entry first, then create the new one.<br>
+    <span style="color:#3a3a3f">Codex app에서는 HTTP/SSE와 stdio 타입을 서로 바꾸려면, 기존 ArkComposer MCP 항목을 먼저 제거한 뒤 새로 등록해야 합니다.</span><br><br>
     <span style="color:var(--warn)">Note on ChatGPT:</span> ChatGPT does not natively support MCP. A separate OpenAPI server is required to bridge ChatGPT function calls to ArkComposer's MCP tools.<br>
     <span style="color:#3a3a3f">ChatGPT는 MCP를 직접 지원하지 않습니다. ChatGPT 연동을 위해서는 별도의 OpenAPI 서버 구현이 필요합니다.</span>
   </div>
@@ -605,6 +633,77 @@ localhost:<span class="val">7890</span>
           </div>
         </li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CODEX APP DEMO -->
+<section class="demo-section" id="codex-app">
+  <div class="section-divider reveal"><span class="section-label">Codex App Demo &nbsp;·&nbsp; 실제 연동 화면</span></div>
+  <div class="codex-layout">
+    <div class="demo-desc reveal">
+      <h3>Codex <span>App</span></h3>
+      <p class="demo-desc-sub">Fast public setup for ArkComposer MCP · 일반 사용자용 빠른 설정</p>
+      <p style="font-size:11px; line-height:1.9; color:var(--text2); margin-bottom:24px;">
+        Need a full walkthrough with larger screenshots? Open the dedicated <a href="CodeX-App-guide.html" style="color:var(--accent); text-decoration:none;">Codex App Guide</a>.<br>
+        <span class="ko" style="display:block; margin-top:4px; color:var(--text3); font-size:10px;">큰 화면 이미지와 자세한 설명은 별도 Codex App Guide 페이지에서 볼 수 있습니다.</span>
+      </p>
+      <ul class="demo-steps">
+        <li>
+          <div>
+            Open ArkComposer normally, then click <strong style="color:var(--text)">Left Palette → MCP Server</strong> and start the server.
+            <span class="ko">ArkComposer를 일반 실행한 뒤, 왼쪽 팔레트 → MCP Server를 눌러 서버를 시작합니다.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            In the Codex app, open <strong style="color:var(--text)">Settings → MCP servers</strong> and register the HTTP/SSE endpoint <code style="color:var(--accent); font-size:10px;">http://localhost:9101/sse</code>.
+            <span class="ko">Codex app에서 Settings → MCP servers로 이동해 <code style="color:var(--accent); font-size:10px;">http://localhost:9101/sse</code> 주소를 등록합니다.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            If you prefer stdio instead, set <code style="color:var(--accent); font-size:10px;">ArkComposer.exe</code> with argument <code style="color:var(--accent); font-size:10px;">--mcp-mode</code>.
+            <span class="ko">stdio 방식을 원하면 <code style="color:var(--accent); font-size:10px;">ArkComposer.exe</code>와 <code style="color:var(--accent); font-size:10px;">--mcp-mode</code>를 등록합니다.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            Start with direct prompts such as <em style="color:var(--accent2)">“Compose a ballad song with 20 measures.”</em> or <em style="color:var(--accent2)">“Add a 4-bar intro to the current song.”</em>
+            <span class="ko">예: “20마디 발라드 곡 만들어줘”, “현재 곡에 4마디 전주 넣어줘”처럼 바로 지시하면 됩니다.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            Codex reads the current score through MCP, plans the edit, and ArkComposer reflects the result in real time.
+            <span class="ko">Codex가 MCP로 현재 악보를 읽고 편집 계획을 세우면, 결과가 ArkComposer에 실시간으로 반영됩니다.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="codex-shot-large reveal">
+      <img src="docs/CodeXComposingSong.png" alt="Codex app composing directly into ArkComposer via MCP">
+      <p>Live composing flow: Codex prompt on the left, ArkComposer score updating on the right. This image works best as a large overview, not as a small thumbnail.</p>
+    </div>
+    <div class="codex-shot-grid">
+      <div class="codex-shot-large reveal">
+        <img src="docs/MCP_server.png" alt="ArkComposer MCP Server dialog showing default ports 9100 and 9101">
+        <p>Step 1 in ArkComposer: open the left palette, click <code>MCP Server</code>, and start the server. The default ports are TCP <code>9100</code> and HTTP/SSE <code>9101</code>.</p>
+      </div>
+      <div class="codex-shot-large reveal">
+        <img src="docs/MCP_HTTP.png" alt="Codex app MCP server settings using the HTTP SSE URL http://localhost:9101/sse">
+        <p>Recommended in the Codex app: register the MCP server URL as <code>http://localhost:9101/sse</code>. This is the simplest path for most users.</p>
+      </div>
+    </div>
+    <div class="codex-shot-grid">
+      <div class="codex-shot reveal">
+        <img src="docs/MCP_stdio.png" alt="Codex app MCP stdio setup using ArkComposer.exe with --mcp-mode">
+        <p>Alternative setup: use stdio with <code>ArkComposer.exe</code> and the argument <code>--mcp-mode</code> if you want the client to launch ArkComposer directly.</p>
+      </div>
+      <div class="codex-shot reveal">
+        <img src="docs/conversation_with_codex.png" alt="Short Codex conversation launching ArkComposer MCP mode and then requesting a 20 measure ballad">
+        <p>The conversation itself should stay simple: connect first, then ask for concrete music tasks in plain language.</p>
+      </div>
     </div>
   </div>
 </section>

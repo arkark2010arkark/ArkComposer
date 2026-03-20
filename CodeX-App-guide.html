@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codex App Guide — ArkComposer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0c;
+    --bg2: #0f0f13;
+    --bg3: #141418;
+    --surface: #1a1a20;
+    --border: #2a2a35;
+    --accent: #c8a96e;
+    --accent2: #7eb8c8;
+    --text: #e8e6e0;
+    --text2: #9a9890;
+    --text3: #5a5855;
+    --green: #6abf6a;
+    --green-bg: #0e1e0e;
+    --green-border: #2a3a2a;
+    --warn: #c86e6e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: repeating-linear-gradient(transparent, transparent 28px, #ffffff04 28px, #ffffff04 29px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 16px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; letter-spacing: 0.1em; color: var(--accent); text-decoration: none; }
+  .nav-back { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text3); text-decoration: none; transition: color 0.2s; }
+  .nav-back:hover { color: var(--accent); }
+  .hero {
+    position: relative;
+    z-index: 1;
+    padding: 80px 48px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .hero-eyebrow { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent2); margin-bottom: 20px; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 6vw, 72px); font-weight: 300; line-height: 1.05; margin-bottom: 8px; }
+  .hero-title span { color: var(--accent); font-style: italic; }
+  .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; font-style: italic; color: var(--text3); margin-bottom: 32px; }
+  .hero-desc { font-size: 11px; line-height: 2; color: var(--text2); max-width: 760px; }
+  .hero-desc .ko { color: var(--text3); }
+  .overview, .step-block {
+    position: relative;
+    z-index: 1;
+    padding: 0 48px 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .overview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 64px; }
+  .overview-card { background: var(--bg2); padding: 28px 24px; }
+  .overview-num { font-size: 32px; font-family: 'Cormorant Garamond', serif; color: var(--accent); opacity: 0.4; margin-bottom: 12px; }
+  .overview-title { font-size: 12px; font-weight: 400; color: var(--text); margin-bottom: 4px; letter-spacing: 0.05em; }
+  .overview-title-ko { font-size: 10px; color: var(--text3); margin-bottom: 10px; }
+  .overview-desc { font-size: 10px; line-height: 1.8; color: var(--text2); }
+  .step-header { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 32px; }
+  .step-num { font-family: 'Cormorant Garamond', serif; font-size: 64px; font-weight: 300; color: var(--accent); opacity: 0.25; line-height: 1; flex-shrink: 0; }
+  .step-title { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; color: var(--text); margin-bottom: 4px; }
+  .step-title span { color: var(--accent); font-style: italic; }
+  .step-title-ko { font-size: 13px; color: var(--text3); font-style: italic; font-family: 'Cormorant Garamond', serif; }
+  .step-desc { font-size: 11px; line-height: 2; color: var(--text2); margin-bottom: 28px; }
+  .step-desc .ko { color: var(--text3); }
+  .ss-wrapper {
+    position: relative;
+    border: 1px solid var(--border);
+    margin-bottom: 24px;
+    overflow: hidden;
+    background: var(--bg2);
+  }
+  .ss-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(135deg, var(--accent) 0%, transparent 40%, var(--accent2) 100%);
+    opacity: 0.15;
+    z-index: -1;
+  }
+  .ss-wrapper img { width: 100%; display: block; }
+  .ss-caption {
+    padding: 12px 16px;
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    font-size: 10px;
+    color: var(--text3);
+    line-height: 1.8;
+  }
+  .code-block {
+    background: #0d0d10;
+    border: 1px solid var(--border);
+    padding: 24px 28px;
+    font-size: 12px;
+    line-height: 1.8;
+    color: #a8c4a8;
+    overflow-x: auto;
+    margin-bottom: 24px;
+  }
+  .code-block .comment { color: var(--text3); }
+  .code-block .key { color: var(--accent2); }
+  .code-block .val { color: var(--accent); }
+  .instruction-list { list-style: none; margin-bottom: 28px; }
+  .instruction-list li {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 11px;
+    line-height: 1.8;
+    color: var(--text2);
+  }
+  .instruction-list li:last-child { border-bottom: none; }
+  .instruction-list .bullet { color: var(--accent); flex-shrink: 0; font-family: 'Cormorant Garamond', serif; font-size: 18px; line-height: 1.4; }
+  .instruction-list .ko { color: var(--text3); font-size: 10px; display: block; margin-top: 3px; }
+  .instruction-list strong { color: var(--text); font-weight: 400; }
+  .highlight-box {
+    background: var(--green-bg);
+    border: 1px solid var(--green-border);
+    padding: 20px 24px;
+    font-size: 11px;
+    line-height: 2;
+    color: var(--text2);
+    margin-bottom: 24px;
+  }
+  .highlight-box .label { color: var(--green); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px; }
+  .highlight-box .ko { color: var(--text3); font-size: 10px; }
+  .warning-box {
+    background: #1e1010;
+    border: 1px solid #3a2020;
+    padding: 20px 24px;
+    font-size: 11px;
+    line-height: 2;
+    color: var(--text2);
+    margin-bottom: 24px;
+  }
+  .warning-box .label { color: var(--warn); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px; }
+  .chat-demo { margin-bottom: 24px; }
+  .chat-user { display: flex; justify-content: flex-end; margin-bottom: 12px; }
+  .chat-user-bubble {
+    background: #2a2a3a;
+    border: 1px solid var(--border);
+    padding: 14px 20px;
+    font-size: 11px;
+    line-height: 1.8;
+    color: var(--text);
+    max-width: 80%;
+  }
+  .section-divider { height: 1px; background: linear-gradient(to right, transparent, var(--border), transparent); margin: 0 48px 64px; }
+  footer {
+    position: relative;
+    z-index: 1;
+    padding: 32px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--accent); font-weight: 600; letter-spacing: 0.1em; }
+  .footer-links { display: flex; gap: 24px; list-style: none; }
+  .footer-links a { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text3); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--accent); }
+  .footer-copy { font-size: 10px; color: var(--text3); }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .hero, .overview, .step-block { padding-left: 24px; padding-right: 24px; }
+    .overview-grid { grid-template-columns: 1fr; }
+    .section-divider { margin: 0 24px 48px; }
+    footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">ArkComposer</a>
+  <a href="index.html" class="nav-back">← Back to Home &nbsp;·&nbsp; 홈으로</a>
+</nav>
+
+<div class="hero reveal">
+  <p class="hero-eyebrow">Integration Guide &nbsp;·&nbsp; 연동 가이드</p>
+  <h1 class="hero-title">Codex <span>App</span></h1>
+  <p class="hero-sub">ArkComposer as MCP Server · 빠르고 읽기 쉬운 설정 가이드</p>
+  <p class="hero-desc">
+    This guide explains the fastest and most reliable way to connect ArkComposer to the Codex app through MCP.<br>
+    For most users, the recommended path is <strong style="color:var(--text)">HTTP/SSE</strong> with <code style="color:var(--accent); font-size:11px;">http://localhost:9101/sse</code>.<br>
+    <span class="ko">이 페이지는 ArkComposer를 Codex app에 MCP로 가장 빠르고 안정적으로 연결하는 방법을 설명합니다. 대부분의 사용자는 HTTP/SSE 방식 <code style="color:var(--accent); font-size:11px;">http://localhost:9101/sse</code>를 쓰는 것이 가장 쉽습니다.</span>
+  </p>
+</div>
+
+<div class="overview">
+  <div class="overview-grid reveal">
+    <div class="overview-card">
+      <div class="overview-num">01</div>
+      <div class="overview-title">Start MCP In ArkComposer</div>
+      <div class="overview-title-ko">ArkComposer에서 MCP 서버 시작</div>
+      <div class="overview-desc">Open ArkComposer normally, then launch the built-in MCP Server from the left palette.<br><br>일반 실행 후 왼쪽 팔레트에서 MCP 서버를 시작합니다.</div>
+    </div>
+    <div class="overview-card">
+      <div class="overview-num">02</div>
+      <div class="overview-title">Register In Codex App</div>
+      <div class="overview-title-ko">Codex app에 서버 등록</div>
+      <div class="overview-desc">Open Settings → MCP servers and register the HTTP/SSE URL.<br><br>Settings → MCP servers에서 HTTP/SSE URL을 등록합니다.</div>
+    </div>
+    <div class="overview-card">
+      <div class="overview-num">03</div>
+      <div class="overview-title">Compose By Chat</div>
+      <div class="overview-title-ko">대화로 작곡 시작</div>
+      <div class="overview-desc">Describe the music you want. Codex reads the score and edits ArkComposer in real time.<br><br>원하는 음악을 말하면 Codex가 악보를 읽고 실시간으로 편집합니다.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="step-block">
+  <div class="step-header reveal">
+    <div class="step-num">01</div>
+    <div>
+      <div class="step-title">Start the <span>MCP Server</span> in ArkComposer</div>
+      <div class="step-title-ko">ArkComposer에서 MCP 서버 시작</div>
+    </div>
+  </div>
+
+  <p class="step-desc reveal">
+    Run ArkComposer normally. In the left palette, click <strong style="color:var(--text)">MCP Server</strong>, confirm the port values, and press <strong style="color:var(--accent)">Start</strong>.<br>
+    The built-in dialog exposes two ports: raw TCP JSON-RPC and HTTP/SSE.<br>
+    <span class="ko">ArkComposer를 일반 실행한 뒤 왼쪽 팔레트의 <strong style="color:var(--text)">MCP Server</strong>를 눌러 포트를 확인하고 <strong style="color:var(--accent)">Start</strong>를 누릅니다. 이 창에는 TCP와 HTTP/SSE 두 가지 포트가 함께 표시됩니다.</span>
+  </p>
+
+  <div class="ss-wrapper reveal">
+    <img src="docs/MCP_server.png" alt="ArkComposer MCP Server dialog showing default ports 9100 and 9101">
+    <div class="ss-caption">
+      Default values shown in ArkComposer: TCP <code>9100</code>, HTTP/SSE <code>9101</code>. These are the values most users should keep.
+    </div>
+  </div>
+
+  <div class="highlight-box reveal">
+    <div class="label">Recommended</div>
+    For the Codex app, prefer the <strong style="color:var(--text)">HTTP/SSE</strong> port.<br>
+    Default URL: <code style="color:var(--accent)">http://localhost:9101/sse</code><br>
+    <span class="ko">Codex app에서는 HTTP/SSE 포트를 권장합니다. 기본 URL은 <code style="color:var(--accent)">http://localhost:9101/sse</code> 입니다.</span>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="step-block">
+  <div class="step-header reveal">
+    <div class="step-num">02</div>
+    <div>
+      <div class="step-title">Add ArkComposer in <span>Codex App</span></div>
+      <div class="step-title-ko">Codex app에 ArkComposer 등록</div>
+    </div>
+  </div>
+
+  <p class="step-desc reveal">
+    Open the Codex app, then go to <strong style="color:var(--text)">Settings → MCP servers</strong>.<br>
+    Create or update the ArkComposer MCP entry and point it to the HTTP/SSE endpoint from ArkComposer.<br>
+    <span class="ko">Codex app에서 <strong style="color:var(--text)">Settings → MCP servers</strong>로 이동한 뒤, ArkComposer MCP 항목을 만들고 ArkComposer에서 표시된 HTTP/SSE 주소를 등록합니다.</span>
+  </p>
+
+  <div class="ss-wrapper reveal">
+    <img src="docs/MCP_HTTP.png" alt="Codex app MCP settings using http://localhost:9101/sse">
+    <div class="ss-caption">
+      Recommended Codex app setup: enter <code>http://localhost:9101/sse</code> as the server URL.
+    </div>
+  </div>
+
+  <ul class="instruction-list reveal">
+    <li>
+      <span class="bullet">①</span>
+      <div>
+        Open <strong>Settings</strong> in the Codex app
+        <span class="ko">Codex app에서 Settings를 엽니다</span>
+      </div>
+    </li>
+    <li>
+      <span class="bullet">②</span>
+      <div>
+        Select <strong>MCP servers</strong>
+        <span class="ko">MCP servers 메뉴를 선택합니다</span>
+      </div>
+    </li>
+    <li>
+      <span class="bullet">③</span>
+      <div>
+        Create or update the ArkComposer server entry with <code style="color:var(--accent); font-size:10px;">http://localhost:9101/sse</code>
+        <span class="ko"><code style="color:var(--accent); font-size:10px;">http://localhost:9101/sse</code> 주소로 ArkComposer 서버 항목을 생성 또는 수정합니다</span>
+      </div>
+    </li>
+  </ul>
+
+  <div class="warning-box reveal">
+    <div class="label">Important</div>
+    If you want to switch between <strong style="color:var(--text)">HTTP/SSE</strong> and <strong style="color:var(--text)">stdio</strong> in the Codex app, uninstall the existing ArkComposer MCP entry first, then create the new one.<br>
+    <span style="color:var(--text3); font-size:10px;">Codex app에서는 HTTP/SSE와 stdio 타입을 서로 바꾸려면 기존 ArkComposer 항목을 먼저 제거한 뒤 새로 만들어야 합니다.</span>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="step-block">
+  <div class="step-header reveal">
+    <div class="step-num">03</div>
+    <div>
+      <div class="step-title">Optional <span>stdio</span> Setup</div>
+      <div class="step-title-ko">선택 사항: stdio 방식</div>
+    </div>
+  </div>
+
+  <p class="step-desc reveal">
+    If you want the client to launch ArkComposer directly, use stdio instead of HTTP/SSE.<br>
+    In that case, set the command to <code style="color:var(--accent); font-size:11px;">ArkComposer.exe</code> and add the argument <code style="color:var(--accent); font-size:11px;">--mcp-mode</code>.<br>
+    <span class="ko">클라이언트가 ArkComposer를 직접 실행하도록 하려면 HTTP/SSE 대신 stdio를 사용하세요. 이 경우 명령은 <code style="color:var(--accent); font-size:11px;">ArkComposer.exe</code>, 인자는 <code style="color:var(--accent); font-size:11px;">--mcp-mode</code>로 설정합니다.</span>
+  </p>
+
+  <div class="ss-wrapper reveal">
+    <img src="docs/MCP_stdio.png" alt="Codex app stdio setup with ArkComposer.exe and --mcp-mode">
+    <div class="ss-caption">
+      Stdio alternative: <code>ArkComposer.exe</code> + <code>--mcp-mode</code>
+    </div>
+  </div>
+
+  <div class="highlight-box reveal">
+    <div class="label">When to use this</div>
+    Use stdio when you want one-click launch directly from the MCP client.<br>
+    Use HTTP/SSE when you want the simplest public setup and clear port-based control from ArkComposer itself.<br>
+    <span class="ko">클라이언트에서 ArkComposer를 직접 실행하고 싶다면 stdio, 일반 사용자에게 가장 쉬운 공개 설정은 HTTP/SSE를 권장합니다.</span>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="step-block">
+  <div class="step-header reveal">
+    <div class="step-num">04</div>
+    <div>
+      <div class="step-title">Compose by <span>Conversation</span></div>
+      <div class="step-title-ko">대화로 작곡 시작</div>
+    </div>
+  </div>
+
+  <p class="step-desc reveal">
+    Once connected, keep the prompt simple and concrete. Ask for song length, mood, style, and the kind of edit you want.<br>
+    Good prompts are short, direct, and musical.<br>
+    <span class="ko">연결 후에는 프롬프트를 짧고 구체적으로 유지하세요. 길이, 분위기, 스타일, 원하는 편집 내용을 직접 말하면 됩니다.</span>
+  </p>
+
+  <div class="chat-demo reveal">
+    <div class="chat-user">
+      <div class="chat-user-bubble">
+        compose a ballad song with 20 measures.
+      </div>
+    </div>
+  </div>
+
+  <div class="ss-wrapper reveal">
+    <img src="docs/conversation_with_codex.png" alt="Codex conversation launching ArkComposer MCP mode and requesting a 20 measure ballad">
+    <div class="ss-caption">
+      Connect first, then request the music in plain language.
+    </div>
+  </div>
+
+  <div class="ss-wrapper reveal">
+    <img src="docs/CodeXComposingSong.png" alt="Codex app composing directly into ArkComposer via MCP">
+    <div class="ss-caption">
+      Codex prompt on the left, ArkComposer score updating on the right.
+    </div>
+  </div>
+
+  <ul class="instruction-list reveal">
+    <li>
+      <span class="bullet">♩</span>
+      <div>
+        Ask for <strong>new composition</strong>: <em style="color:var(--accent2)">“Compose a ballad song with 20 measures.”</em>
+        <span class="ko">새 곡 작곡 예: “20마디 발라드 곡 만들어줘”</span>
+      </div>
+    </li>
+    <li>
+      <span class="bullet">♩</span>
+      <div>
+        Ask for <strong>editing</strong>: <em style="color:var(--accent2)">“Add a 4-bar intro to the current song.”</em>
+        <span class="ko">편집 예: “현재 곡에 4마디 전주 넣어줘”</span>
+      </div>
+    </li>
+    <li>
+      <span class="bullet">♩</span>
+      <div>
+        Ask for <strong>clear constraints</strong>: key, tempo, meter, mood, instrumentation
+        <span class="ko">조성, 템포, 박자, 분위기, 악기 구성을 구체적으로 말하면 결과가 더 좋아집니다</span>
+      </div>
+    </li>
+  </ul>
+  <div class="highlight-box reveal">
+    <div class="label">Operational Rule</div>
+    Codex should inspect the current score before editing it. In practice, that means MCP clients should read the score first and only then compose or modify a target passage.<br>
+    <span class="ko">Codex는 편집 전에 현재 악보를 먼저 읽는 것이 원칙입니다. 실제로는 target passage를 수정하기 전에 score를 먼저 읽어야 합니다.</span>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="step-block">
+  <div class="step-header reveal">
+    <div class="step-num">05</div>
+    <div>
+      <div class="step-title">Trouble<span>shooting</span></div>
+      <div class="step-title-ko">문제 해결</div>
+    </div>
+  </div>
+
+  <ul class="instruction-list reveal">
+    <li>
+      <span class="bullet">①</span>
+      <div>
+        If the Codex app cannot connect, confirm that ArkComposer is still running and the MCP Server dialog was actually started.
+        <span class="ko">연결이 안 되면 ArkComposer가 실행 중인지, MCP Server를 실제로 시작했는지 먼저 확인합니다.</span>
+      </div>
+    </li>
+    <li>
+      <span class="bullet">②</span>
+      <div>
+        If the URL entry seems correct but the connection still fails, remove the existing ArkComposer MCP entry in the Codex app and create it again.
+        <span class="ko">URL이 맞는데도 실패하면 Codex app의 ArkComposer MCP 항목을 삭제 후 다시 만듭니다.</span>
+      </div>
+    </li>
+    <li>
+      <span class="bullet">③</span>
+      <div>
+        If you changed transport type, uninstall first. Do not try to convert one saved MCP entry from HTTP/SSE to stdio in place.
+        <span class="ko">전송 타입을 바꿨다면 먼저 제거하세요. 저장된 항목을 HTTP/SSE에서 stdio로 바로 덮어 바꾸려 하지 마세요.</span>
+      </div>
+    </li>
+    <li>
+      <span class="bullet">④</span>
+      <div>
+        If things feel stuck, fully close both Codex app and ArkComposer, then start again from a clean state.
+        <span class="ko">문제가 꼬이면 Codex app과 ArkComposer를 모두 완전히 종료한 뒤 다시 시작합니다.</span>
+      </div>
+    </li>
+  </ul>
+
+  <div class="warning-box reveal">
+    <div class="label">Common Cause</div>
+    The most common cause of MCP problems is a stale client or app process still running in memory.<br>
+    A full restart is often faster than trying partial recovery steps repeatedly.<br>
+    <span style="color:var(--text3); font-size:10px;">가장 흔한 원인은 메모리에 남아 있는 이전 프로세스입니다. 부분 복구를 반복하기보다 완전 재시작이 더 빠른 경우가 많습니다.</span>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="step-block">
+  <div class="step-header reveal">
+    <div class="step-num">—</div>
+    <div>
+      <div class="step-title">Reference <span>Notes</span></div>
+      <div class="step-title-ko">참고 메모</div>
+    </div>
+  </div>
+
+  <div class="code-block reveal">
+<span class="comment">Recommended endpoint for Codex app:</span>
+http://localhost:9101/sse
+
+<span class="comment">Alternative stdio launch:</span>
+ArkComposer.exe --mcp-mode
+
+<span class="comment">Advanced raw TCP endpoint:</span>
+localhost:9100
+  </div>
+
+  <div class="highlight-box reveal">
+    <div class="label">Built-in docs</div>
+    ArkComposer also exposes its own AI usage docs through MCP resources, including:<br>
+    <code style="color:var(--accent)">arkcomposer://docs/how-to-use-llm</code><br>
+    <span class="ko">ArkComposer는 MCP 리소스로 AI 사용 가이드를 직접 제공합니다. 예: <code style="color:var(--accent)">arkcomposer://docs/how-to-use-llm</code></span>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">ArkComposer</div>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="claude-desktop-guide.html">Claude Guide</a></li>
+    <li><a href="https://github.com/arkark2010arkark/ArkComposer" target="_blank">GitHub</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 Park Byoung Gu (박병구)</p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
