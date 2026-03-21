@@ -1,0 +1,52 @@
+{
+  "name": "English Help",
+  "panel": {
+    "title": "Help",
+    "topics": "Topics",
+    "tooltip": {
+      "collapse": "Collapse help",
+      "show": "Show help",
+      "prev": "Previous topics",
+      "next": "Next topics",
+      "menu": "Topics menu"
+    }
+  },
+  "topics": {
+    "modes": {
+      "title": "Modes",
+      "body": "Editor Modes (top bar)\n\n[Measure Edit]\n- Left click selects the clicked measure\n- Left drag selects a measure range\n- Measure playback ranges use the current measure selection\n\n[Note Edit]\n- Left click on a note selects that note\n- Left drag selects notes in the rectangle\n- Left click on empty measure space applies note/rest input tools\n- Accidental and note eraser tools still apply directly on note click"
+    },
+    "tools": {
+      "title": "Tools",
+      "body": "Input Tools (left palette)\n\n[Input]\n- Notes, rests, erasers, and accidentals are grouped in one section\n- Notes are the main grid, rests are shown as an auxiliary row\n\n[Note]  Whole / Half / Quarter / 8th / 16th / 32nd / 64th\n- Each duration has a dotted variant (adds 50%)\n- Click on score to insert at that pitch and beat\n- Notes at the same beat stack into chords\n\n[Rest]\n- Insert a rest directly when needed\n- Most rest cleanup is still handled automatically by normalization\n\n[Eraser]\n- Erase Measure: clear the clicked measure while keeping the measure slot\n- Erase Note: delete only the clicked note\n\n[Accidental]  Flat(b) / Natural / Sharp(#)\n\n[Edit]\n- Adjust Velocity opens a curve editor for selected measures and lets you raise or lower note velocity across the range\n\n[Score Setup]\n- Time Signature: 4/4, 3/4, 2/4, 6/8, 12/8\n- Key Signature: Major/Minor, 3 apply modes\n- Clef: Treble / Bass (entire track)\n- Expression Marks: accel., rit., p, mf, f, cresc., dim., Ped., *"
+    },
+    "shortcuts": {
+      "title": "Shortcuts",
+      "body": "Keyboard Shortcuts\n\n[Edit]\nCtrl+Z Undo | Ctrl+Y Redo\nDelete selected | Ctrl+C Copy | Ctrl+V Paste\n\n[Selection]\nEscape Clear\n\n[Transpose / Move]\nUp/Down +/-1 semitone\nCtrl+Up/Down Diatonic step\nLeft/Right Move notes\n\n[View]\nMouse wheel Scroll\nCtrl+wheel Zoom (0.5x~1.6x)"
+    },
+    "selection": {
+      "title": "Selection",
+      "body": "Selection Details\n\n[Measure Edit]\n- Left click/drag selects measures only in Measure Edit mode\n- Shift+click adds to measure selection\n- Clear Selection keeps measure slots\n- Delete removes selected measures\n\n[Note Edit]\n- Left click/drag selects notes only in Note Edit mode\n- Shift+click adds notes to selection\n- Delete removes selected notes\n\n[Paste Mode]\n- Ctrl+V starts paste preview\n- Left click applies paste\n- Esc exits paste mode"
+    },
+    "playback": {
+      "title": "Playback",
+      "body": "Playback\n\n[Player Controls]\n- Play / Pause / Stop\n- Play mode toggles: selected range only / selected range to end / whole song\n- Position slider seek\n- Volume control\n\n[Behavior]\n- Selected range only: plays only selected measures\n- Selected range to end: starts at the first selected measure and keeps the original full song timeline\n- If a range mode has no selected measure, playback falls back to the last worked note's measure\n- Whole song: always plays from the beginning to the end\n- Hidden tracks are excluded\n\n[Audio Export]\n- WAV: lossless\n- MP3: compressed (requires lame.exe)\n- MIDI: standard .mid export"
+    },
+    "track": {
+      "title": "Track",
+      "body": "Track Management\n\n[Track Add / Delete]\n- Add creates a new track\n- Delete opens a checklist popup so multiple tracks can be deleted at once\n\n[Hide / Show]\n- Hide removes track from view/playback\n- Show restores hidden tracks\n\n[Track Tools]\n- Merge / Split by pitch / Move track order are available from the Track section\n\n[Track Info]\n- Click track header to edit instrument\n- Program / Bank / Percussion / Volume / Pan\n\n[Lyrics]\n- Double-click measure lyric\n- Use Lyrics View/Edit for bulk edit"
+    },
+    "compose": {
+      "title": "Compose",
+      "body": "Compose Assist\n\n[Enable] Toggle Compose in top bar\nModes: Functional / Pop / Jazz / Emotional / Circle5\n\n[Melody] Transforms selected notes\n[Rhythm] Re-positions to match pattern\n[Chords] Analyzes melody, infers chords\n[Compose Overlay] Note Guide and Chord Suggestion text follow the current UI language\n[Voice Leading] Tunable parameters are available from the Voice Leading panel\n[Accompaniment] Arpeggio / Chord Beat / Drum Beat / AI accompaniment styles\n[AI Model] Select the builtin ONNX or TinyGRU model from Accompaniment Track > AI Model"
+    },
+    "files": {
+      "title": "Files",
+      "body": "File Management\n\n[Commands] New / Open / Save / Save As\n[Multi-Document Tabs] Multiple scores in tabs\n[Export] Score: PDF/PNG/JPG | Audio: WAV/MP3/MIDI\n[Format] JSON (.json / .arkscore)\n[Language] File > Language\n[Troubleshooting] Check SoundFont, track visibility, lame.exe"
+    },
+    "leftdock": {
+      "title": "Left Dock",
+      "body": "Left Dock & Palette\n\n[Layout]\n- Top: Tool palette\n- Bottom: Player controls\n- Collapse button minimizes dock\n\n[Tool Categories]\n- File / Edit / Score Setup / Input / Track / Compose Assist\n- Input groups notes, rests, erasers, and accidentals together\n- Rests are shown as a secondary row under the main note tools\n- File > About shows app info and author contact\n\n[Pinned Tools]\n- Frequently used tools appear in top bar"
+    }
+  }
+}
