@@ -1,0 +1,15 @@
+{
+  "id": "phase31_hybrid_oldacc_latest",
+  "display_name": "ArkComposer 01",
+  "capabilities": [
+    "planner",
+    "voice_leading",
+    "accompaniment",
+    "drum_accompaniment"
+  ],
+  "supports_planner": true,
+  "supports_voice_leading": true,
+  "supports_accompaniment": true,
+  "supports_drum": true,
+  "variant": "latest"
+}

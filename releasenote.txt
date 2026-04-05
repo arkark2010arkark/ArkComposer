@@ -1,71 +1,53 @@
 ArkComposer Release Notes
 
-Version 1.0.1.1
-Date: 2026-03-21
+Version 1.1.1.2
+Date: 2026-04-05
+Base commit: 982082d
 
 Summary
-- Reworked note spacing, tied-segment handling, and dense-measure readability across score rendering.
-- Normalized unnecessary split/tied note representations on JSON/MIDI load and reduced differences between loaded data and pasted data.
-- Improved accompaniment generation and top chord display by switching harmony inference from a single-track reference to a merged harmony reference.
-- Cleaned up major GUI workflows including the left palette, player controls, and edit/selection modes.
+- Expanded `Edit Measure (MIDI)` into a stronger piano-roll style measure editor with direct note repair, tie editing, velocity editing, and built-in AI actions.
+- Reorganized the top workflow around `Edit Measure`, `Measure Select`, `Note Select`, and `Score Edit`, with clearer grouping and a new status bar.
+- Improved AI composition flows including `AI Voicing`, `AI Accomp`, new AI accompaniment styles, and safer model fallback behavior.
+- Added built-in update checking for GitHub Releases and refreshed the bundled help and README to match the current UI.
 
-Notation / Layout
-- Unified displayed note X positions and hit-test X positions under the same spacing logic.
-- Improved adaptive spacing using measure density, note duration, and visible symbol count including rests.
-- In sparse measures, spacing now follows duration proportion more strongly while still guaranteeing a minimum width for short notes such as 32nd notes.
-- Reduced cases where tied fragments consumed excessive horizontal space by rebuilding spacing from untied temporary notation.
-- Separated tie rendering responsibilities from spacing responsibilities so tie graphics no longer inflate spacing by themselves.
-- Relaxed automatic notehead shrinking so it is used only when local gaps are actually too tight.
-- Added green insertion guide lines in edit mode for valid note start positions inside rest windows.
+Edit Measure (MIDI)
+- Upgraded the dialog from a simple duration-adjust window into a broader MIDI-style measure editor.
+- Added dedicated Edit / Insert / Delete / Tie modes inside the measure editor.
+- Added track-wide measure navigation so nearby measures can be opened and checked more quickly.
+- Added direct playback controls in the editor for faster audition while editing.
+- Added `Velocity`, `AI Voicing`, and `AI Accomp` actions directly inside the editor.
+- Fixed tie information loss during save and improved stability around measure-edit workflows.
+- Improved the loading/wait flow when playback is triggered from the measure editor.
 
-Import / Normalize
-- Added canonical notation duration cleanup for JSON/MIDI import when values are close to standard notation lengths.
-- Added automatic merge of reducible tied segments during Normalize when no new onset needs to be shown.
-- Changed app JSON loading so stored micro-rest segments are not reinserted directly; notes are restored first and rests are rebuilt by Normalize.
-- Reduced mismatches between score notation immediately after load and after copy/paste round-trips.
+Top Bar / UI / Workflow
+- Promoted `Edit Measure` to the primary top-bar action.
+- Split top-bar work modes into `Measure Select`, `Note Select`, and `Score Edit`.
+- Restored the workflow where pressing a pinned note or eraser tool automatically switches into score editing.
+- Added a top status bar that shows current mode, tool, track, selected measures, rhythm, melody, and AI state.
+- Reorganized composition actions under Rhythm, Melody, Helper, and AI Helper menus.
+- Added a settings dialog and refreshed several menu labels and help strings to match the current screen layout.
 
-Harmony / Accompaniment / Chords
-- Added a song-level harmony reference track concept with save/load support.
-- Unified accompaniment generation, AI accompaniment context, and top chord symbol display around a shared reference path.
-- Harmony inference now prefers a temporary merged harmony reference built from all non-percussion tracks per measure.
-- Excluded the target accompaniment track from the merged harmony source to avoid self-reference during accompaniment generation.
+AI / Compose Assist
+- Added direct `AI Voicing` access from the top menu and from `Edit Measure (MIDI)`.
+- Added direct `AI Accomp` access from `Edit Measure (MIDI)`.
+- Added new AI accompaniment styles including `AI Free (Melody Variation)`.
+- Recovered and improved `AI Free` accompaniment behavior.
+- Fixed a bug where accompaniment generation style could stay stuck on the AI-recommended entry.
+- Improved model fallback so missing newer phases can fall back more safely to earlier available models.
+- Continued improving hybrid AI usage where accompaniment and voicing can use different model generations more reliably.
 
-Editing / Interaction
-- Added eraser tools.
-  - Erase Measure: clears the clicked measure while keeping the measure slot.
-  - Erase Note: deletes only the clicked note.
-- Simplified the top edit mode structure to two modes:
-  - Measure Edit
-  - Note Edit
-- Measure selection is now available only in Measure Edit mode.
-- Note selection is now available only in Note Edit mode.
-- Removed right-click quick selection on the score.
-- Removed long-press mouse pitch dragging for notes. Keyboard note movement remains available.
-- When playback requires a selected measure range and no measure is selected, playback now falls back to the measure containing the last worked note.
-- Playback no longer forces the UI to switch modes while playing.
+Playback / Player
+- Enlarged the player volume control and slider hit area so volume changes are easier to perform.
+- Improved transport behavior and loading feedback around playback launched from advanced editing flows.
+- Raised MP3 export quality.
 
-Player / Palette / UI
-- Added three playback start modes:
-  - Selected range only
-  - From selected range to end
-  - Whole song
-- Changed Play after Pause to resume from the current position instead of restarting from the beginning.
-- Changed Ctrl+mouse-wheel zoom to follow the measure under the mouse cursor using score-space anchors, and kept the hovered measure's left boundary visible during reflow so zooming does not scroll past the measure start.
-- Increased player control area and slider hit areas for easier volume and transport control.
-- Increased the default startup window size and lowered the default score zoom so more measures are visible immediately after launch.
-- Reorganized the left palette into these top-level sections:
-  - File
-  - Edit
-  - Score Setup
-  - Input
-  - Track
-  - Compose Assist
-- Grouped Notes, Rests, Erasers, and Accidentals inside a single Input section, with rests reduced to a secondary row.
-- Replaced the eraser icons with clearer large/small eraser visuals.
-- Replaced single-track delete selection with a multi-select checklist popup so multiple tracks can be deleted at once.
+Fixes
+- Fixed several bugs in rhythm reassignment, including cases where other measures could be removed unexpectedly.
+- Improved AI drum post-processing and related generation handling.
+- Fixed localization gaps so newer AI and measure-edit commands no longer fall back to the wrong language as often.
+- Updated built-in help content to reflect the current top bar, status bar, measure-edit workflow, and AI tools.
 
-Localization / Docs
-- Added missing Korean localization keys in accompaniment-related menus that previously fell back to English.
-- Updated help text and developer documentation to reflect the new player modes, palette structure, eraser tools, and two-mode editing contract.
-
+Update / Distribution
+- Added `Check for Updates` support based on GitHub Releases.
+- The app can compare the running version with the latest published release and prepare a download/apply flow for packaged updates.
 

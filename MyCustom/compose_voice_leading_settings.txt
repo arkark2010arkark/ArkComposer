@@ -1,8 +1,0 @@
-composeVoiceLeadingMode=2
-composeVoiceLeadingActive=8,0.850000,0.700000,0.800000,0.700000,0.450000,0.850000,0.920000,0.950000,3
-composeVoiceLeadingCustomPresets=test|0|8|0.380000|0.860000|0.810000|0.920000|0.530000|0.920000|0.850000|0.900000|3;Variation|0|8|0.380000|0.750000|0.590000|0.450000|0.550000|0.570000|0.880000|0.920000|3;Variation|0|10|0.270000|0.630000|0.380000|0.200000|0.830000|0.370000|0.880000|0.920000|3
-composeVoiceLeadingCustomPresetIndex=-1
-composeVoicePhraseIntent=2
-composeVoicePhraseEndingBars=2
-composeVoicePhraseTargetTrack=-1
-composeVoicePhraseTargetMeasure=-1

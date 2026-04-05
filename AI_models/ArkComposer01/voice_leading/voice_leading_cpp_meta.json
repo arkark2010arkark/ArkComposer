@@ -1,0 +1,27 @@
+{
+  "format": "ark_music_train_runtime_v1",
+  "model_name": "voice_leading",
+  "phase": "phase31",
+  "variant": "latest",
+  "capability": "voice_leading",
+  "vocab_size": 4096,
+  "pad_token_id": 0,
+  "runtime_io": {
+    "input_name": "tokens",
+    "output_name": "logits",
+    "input_dtype": "int64"
+  },
+  "model": {
+    "embedding_dim": 256,
+    "hidden_size": 512,
+    "num_layers": 3,
+    "dropout": 0.1
+  },
+  "train_contract": {
+    "max_input_tokens": 640,
+    "max_target_tokens": 1280,
+    "max_total_tokens": 1920
+  },
+  "model_type": "onnx",
+  "onnx_file": "voice_leading.onnx"
+}

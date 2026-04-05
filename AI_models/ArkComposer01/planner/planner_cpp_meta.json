@@ -1,0 +1,27 @@
+{
+  "format": "ark_music_train_runtime_v1",
+  "model_name": "planner",
+  "phase": "phase2",
+  "variant": "best",
+  "capability": "planner",
+  "vocab_size": 4096,
+  "pad_token_id": 0,
+  "runtime_io": {
+    "input_name": "tokens",
+    "output_name": "logits",
+    "input_dtype": "int64"
+  },
+  "model": {
+    "embedding_dim": 192,
+    "hidden_size": 384,
+    "num_layers": 2,
+    "dropout": 0.1
+  },
+  "train_contract": {
+    "max_input_tokens": 128,
+    "max_target_tokens": 32,
+    "max_total_tokens": 160
+  },
+  "model_type": "onnx",
+  "onnx_file": "planner.onnx"
+}

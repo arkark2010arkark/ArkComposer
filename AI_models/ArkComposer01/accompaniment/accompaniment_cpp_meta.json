@@ -1,0 +1,46 @@
+{
+  "model_name": "accompaniment",
+  "seq_len": 256,
+  "vocab_size": 4096,
+  "embedding_dim": 192,
+  "rnn_units": 384,
+  "files": {
+    "embedding": "teacher_unified_embedding.f32",
+    "gru_kernel": "teacher_unified_gru_kernel.f32",
+    "gru_recurrent": "teacher_unified_gru_recurrent.f32",
+    "gru_bias": "teacher_unified_gru_bias.f32",
+    "dense_kernel": "teacher_unified_dense_kernel.f32",
+    "dense_bias": "teacher_unified_dense_bias.f32"
+  },
+  "shapes": {
+    "embedding": [
+      4096,
+      192
+    ],
+    "gru_kernel": [
+      192,
+      1152
+    ],
+    "gru_recurrent": [
+      384,
+      1152
+    ],
+    "gru_bias": [
+      2,
+      1152
+    ],
+    "dense_kernel": [
+      384,
+      4096
+    ],
+    "dense_bias": [
+      4096
+    ]
+  },
+  "model_type": "onnx",
+  "onnx_file": "accompaniment.onnx",
+  "runtime_io": {},
+  "onnx_input_name": "tokens",
+  "onnx_output_name": "logits",
+  "onnx_input_dtype": "int32"
+}

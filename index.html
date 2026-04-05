@@ -419,6 +419,7 @@
   <ul class="nav-links">
     <li><a href="#features">Features</a></li>
     <li><a href="#mcp">MCP / AI</a></li>
+    <li><a href="#builtin-ai">Built-in AI</a></li>
     <li><a href="#author">Author</a></li>
     <li><a href="#download">Download</a></li>
     <li><a href="https://github.com/arkark2010arkark/ArkComposer" target="_blank">GitHub</a></li>
@@ -445,13 +446,14 @@
 
 <!-- HERO -->
 <section class="hero">
-  <p class="hero-eyebrow">A Personal Hobby AI-Driven Composer IDE</p>
+  <p class="hero-eyebrow">A Personal Hobby AI-Driven Composer IDE &nbsp;·&nbsp; v1.1.1.2</p>
   <h1 class="hero-title">Ark<span>Composer</span></h1>
   <p class="hero-sub">A personal hobby project for AI-assisted composition</p>
   <p class="hero-desc">
     A personal hobby AI-driven Composer IDE with a built-in MCP server and a built-in AI that is still actively being trained.<br>
-    Connect Claude Code Desktop, Codex app, or any MCP-capable AI client and compose together in natural language. Voice leading is still rough, but the accompaniment generator already creates surprisingly fitting backing for many songs.<br>
-    <span class="ko">개인적인 취미로 만드는 AI 기반 Composer IDE입니다. 악보 편집부터 AI 작곡까지 대화로 음악을 만들 수 있습니다. 자체 내장 AI도 계속 학습 진행 중이며, voice leading은 아직 많이 부족하지만 반주 생성 기능은 곡에 꽤 잘 어울리는 반주를 놀라울 정도로 만들어주고 있습니다.</span>
+    Now with a full piano-roll style <strong style="color:var(--text)">Edit Measure (MIDI)</strong> editor, direct <strong style="color:var(--text)">AI Voicing</strong> and <strong style="color:var(--text)">AI Accomp</strong> actions, a clearer top-bar workflow with status bar, and built-in update checking.<br>
+    Connect Claude Code Desktop, Codex app, or any MCP-capable AI client and compose together in natural language.<br>
+    <span class="ko">개인적인 취미로 만드는 AI 기반 Composer IDE입니다. 피아노롤 스타일의 Edit Measure (MIDI) 편집기, AI Voicing·AI Accomp 직접 호출, 상태바가 포함된 새 상단 워크플로, 자동 업데이트 기능이 추가되었습니다. 악보 편집부터 AI 작곡까지 대화로 음악을 만들 수 있습니다.</span>
   </p>
   <div class="hero-cta">
     <a href="#download" class="btn-primary">↓ Download Free &nbsp;·&nbsp; 무료 다운로드</a>
@@ -481,10 +483,22 @@
       <div class="feature-desc">Multi-track notation with notes, rests, dynamics, key/time signatures, lyrics, and chord symbols.<br><br>멀티트랙 악보 편집 — 음표, 쉼표, 나타냄말, 조표, 박자표, 가사, 화음 기호.</div>
     </div>
     <div class="feature-card reveal">
+      <div class="feature-icon">🎹</div>
+      <div class="feature-name">Edit Measure (MIDI)</div>
+      <div class="feature-name-ko">마디 편집 — 피아노롤</div>
+      <div class="feature-desc">Piano-roll style editor with Edit / Insert / Delete / Tie modes. Track-wide measure navigation, built-in playback, velocity shaping, and direct AI Voicing &amp; AI Accomp actions — all without leaving the score workflow.<br><br>피아노롤 스타일 편집기 — 편집/삽입/삭제/타이 모드, 트랙 내 마디 탐색, 재생, 벨로시티 조절, AI Voicing·AI Accomp 직접 호출을 악보 워크플로 안에서 바로 사용.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">🧭</div>
+      <div class="feature-name">Top-Bar Workflow & Status Bar</div>
+      <div class="feature-name-ko">상단 바 워크플로 & 상태 바</div>
+      <div class="feature-desc">Edit Measure is the primary action. Measure Select, Note Select, and Score Edit split selection from editing. A status bar shows current mode, tool, track, measures, rhythm, melody, and AI state at a glance.<br><br>Edit Measure가 주 동작. Measure Select·Note Select·Score Edit로 모드 분리. 상태 바에서 현재 모드, 도구, 트랙, 리듬, 멜로디, AI 상태를 한눈에 확인.</div>
+    </div>
+    <div class="feature-card reveal">
       <div class="feature-icon">🤖</div>
-      <div class="feature-name">Built-in AI Voice Leading</div>
-      <div class="feature-name-ko">내장 AI 보이스 리딩 (실험적)</div>
-      <div class="feature-desc">11 tunable parameters: stepwise bias, tension use, cadence force, leap compensation, and more. Model improves continuously.<br><br>11가지 파라미터 조정 가능. 학습에 따라 지속적으로 개선되는 모델.</div>
+      <div class="feature-name">AI Voicing & AI Accompaniment</div>
+      <div class="feature-name-ko">AI 보이싱 & AI 반주</div>
+      <div class="feature-desc">AI Voicing from the top menu or inside Edit Measure (MIDI). AI Accomp generates accompaniment following melody and harmony. Styles include AI Chord Beat, AI Arpeggio, AI Free, AI Free (Melody Variation), and AI Drum Beat.<br><br>AI Voicing은 상단 메뉴 및 Edit Measure에서 직접 호출. AI Accomp는 멜로디·화성을 따르는 반주를 생성. AI Chord Beat, AI Arpeggio, AI Free, AI Free (Melody Variation), AI Drum Beat 스타일 지원.</div>
     </div>
     <div class="feature-card reveal">
       <div class="feature-icon">🎵</div>
@@ -496,13 +510,7 @@
       <div class="feature-icon">🎹</div>
       <div class="feature-name">SoundFont Playback</div>
       <div class="feature-name-ko">사운드폰트 재생</div>
-      <div class="feature-desc">Per-track instrument assignment with .sf2 SoundFont support. Export to WAV and MP3.<br><br>트랙별 악기 지정, SF2 사운드폰트 지원. WAV/MP3 오디오 내보내기.</div>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon">🎛️</div>
-      <div class="feature-name">Plugin Filter System</div>
-      <div class="feature-name-ko">플러그인 필터 구조</div>
-      <div class="feature-desc">Distortion, Echo, and more. Extensible plugin architecture for custom audio effects.<br><br>디스토션, 에코 등 오디오 이펙트 필터. 확장 가능한 플러그인 구조.</div>
+      <div class="feature-desc">Per-track instrument assignment with .sf2 SoundFont support. Enlarged volume controls, improved transport. Export to WAV and MP3 (higher quality).<br><br>트랙별 악기 지정, SF2 사운드폰트 지원. 개선된 볼륨 컨트롤·재생 흐름. WAV/MP3 고품질 내보내기.</div>
     </div>
     <div class="feature-card reveal">
       <div class="feature-icon">📊</div>
@@ -521,6 +529,18 @@
       <div class="feature-name">Score Export</div>
       <div class="feature-name-ko">악보 내보내기</div>
       <div class="feature-desc">Export your score as PDF, PNG, or JPG. Native format: .arkscore / .json (human-readable).<br><br>PDF, PNG, JPG로 악보 내보내기. 자체 포맷 .arkscore / .json.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">🎛️</div>
+      <div class="feature-name">Plugin Filter System</div>
+      <div class="feature-name-ko">플러그인 필터 구조</div>
+      <div class="feature-desc">Distortion, Echo, and more. Extensible plugin architecture for custom audio effects.<br><br>디스토션, 에코 등 오디오 이펙트 필터. 확장 가능한 플러그인 구조.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">🔃</div>
+      <div class="feature-name">Auto Update Check</div>
+      <div class="feature-name-ko">자동 업데이트 확인</div>
+      <div class="feature-desc">Check for Updates compares your version against the latest GitHub Release and prepares the download/apply flow.<br><br>Check for Updates로 최신 GitHub Release와 버전을 비교하고 다운로드/적용 흐름을 안내합니다.</div>
     </div>
   </div>
 </section>
@@ -710,6 +730,49 @@ localhost:<span class="val">9100</span>
   </div>
 </section>
 
+<!-- BUILT-IN AI ACCOMPANIMENT -->
+<section class="demo-section" id="builtin-ai">
+  <div class="section-divider reveal"><span class="section-label">Built-in AI Accompaniment &nbsp;·&nbsp; 내장 AI 반주</span></div>
+  <div class="demo-grid">
+    <div class="reveal">
+      <div class="demo-image-wrapper">
+        <img src="docs/BuiltIn_AI_AbleAccompaniment.png" alt="ArkComposer Built-in AI Accompaniment generating backing tracks">
+      </div>
+      <p class="demo-caption">Built-in AI Accompaniment &nbsp;·&nbsp; 내장 AI 반주 생성 화면</p>
+    </div>
+    <div class="demo-desc reveal">
+      <h3>Built-in <span>AI</span></h3>
+      <p class="demo-desc-sub">AI Voicing · AI Accomp · Local ONNX Models &nbsp;·&nbsp; 로컬 AI 모델</p>
+      <ul class="demo-steps">
+        <li>
+          <div>
+            Access <strong style="color:var(--text)">AI Voicing</strong> from the AI Helper menu or directly inside <strong style="color:var(--accent)">Edit Measure (MIDI)</strong> for cleaner voicing and redistribution.
+            <span class="ko">AI Helper 메뉴 또는 Edit Measure (MIDI) 안에서 AI Voicing을 바로 호출하여 보이싱을 개선합니다.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            Use <strong style="color:var(--text)">AI Accomp</strong> inside Edit Measure (MIDI) to generate accompaniment that follows the current melody and harmony.
+            <span class="ko">Edit Measure (MIDI) 안에서 AI Accomp를 사용해 현재 멜로디·화성에 맞는 반주를 생성합니다.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            Choose from styles: <em style="color:var(--accent2)">AI Chord Beat, AI Arpeggio, AI Free, AI Free (Melody Variation), AI Drum Beat</em>
+            <span class="ko">AI Chord Beat, AI Arpeggio, AI Free, AI Free (Melody Variation), AI Drum Beat 등 다양한 스타일.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            Built-in ONNX and TinyGRU models run locally — no internet required. Models improve as training progresses.
+            <span class="ko">내장 ONNX 및 TinyGRU 모델은 로컬에서 동작하며 인터넷 없이 사용 가능. 학습에 따라 지속 개선.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- MCP TOOLS TABLE -->
 <section class="tools-section">
   <div class="section-divider reveal"><span class="section-label">MCP Tool Surface</span></div>
@@ -795,6 +858,7 @@ localhost:<span class="val">9100</span>
   <div class="download-inner reveal">
     <h2 class="download-title">Download</h2>
     <p class="download-title-ko">무료 다운로드</p>
+    <p class="download-desc" style="margin-bottom:4px;">Version <strong style="color:var(--accent)">1.1.1.2</strong> &nbsp;·&nbsp; 2026-04-05</p>
     <p class="download-desc">Windows 10 / 11 (64-bit) &nbsp;·&nbsp; Free for all use</p>
     <p class="download-desc-ko">
       개인 및 상업적 목적 모두 무료 사용 가능<br>

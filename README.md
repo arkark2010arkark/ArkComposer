@@ -1,9 +1,8 @@
-# 🎼 ArkComposer
+# ArkComposer
 
-**AI-native music composition and score editing — powered by MCP**
+Windows score editor and AI-assisted composition workstation.
 
-> Compose, edit, and arrange music through conversation with AI.  
-> Connect Claude Code, or any MCP-compatible AI and compose together.
+> Write, edit, arrange, and refine music in a full score editor, then use built-in AI tools or MCP-connected clients when you want generation help.
 
 ![ArkComposer Screenshot](docs/screenshot.png)
 
@@ -19,19 +18,25 @@ ArkComposer is a personal hobby project, built on weekends and spare moments, dr
 
 ---
 
-## ✨ What Makes ArkComposer Different
+## What Makes ArkComposer Different
 
-Most notation software is a tool you *use*. ArkComposer is a tool you *talk to*.
-
-- **MCP Server built-in** — Connect any LLM (Claude, etc.) via stdio or TCP and compose through natural conversation
-- **Built-in AI voice leading** — 11 tunable parameters for harmonic lines, chord voicings, and accompaniment generation
-- **Full score editor** — Not just a viewer. Notes, rests, expressions, key/time signatures, lyrics, and more
-- **Melody & Rhythm Variation** — Inversion, retrograde, augmentation, pentatonic, passing tones, genre-based rhythm patterns
-- **Melodic Mood Overlay** — Visual stability/tension analysis on every note (3 color styles)
+- Full score editing and composition tools live in one workflow instead of separate notation and generator apps
+- `Edit Measure (MIDI)` gives you a modeless piano-roll editor for precise measure-level repair, timing edits, velocity shaping, and AI-assisted rewriting
+- Built-in composition helpers cover rhythm, melody variation, chord suggestion, voice leading, accompaniment, and AI generation
+- An MCP server is built into the app, so external AI clients can control the same score editor when needed
+- Visual analysis overlays and score-aware editing tools stay tied to the musical structure instead of raw MIDI only
 
 ---
 
-## 🚀 Features
+## Features
+
+### Top-Bar Workflow
+- Undo / Redo stays at the far left for quick recovery
+- `Edit Measure` opens `Edit Measure (MIDI)` for the current measure selection
+- `Measure Select`, `Note Select`, and `Score Edit` split selection from direct score editing
+- Pinned note and eraser tools can switch the app into score editing immediately
+- Rhythm, Melody, Helper, and AI Helper menus are grouped on the right side of the top bar
+- A status bar below the top menu shows the current mode, tool, track, selected measures, rhythm, melody, and AI state
 
 ### Score Editing
 - Multi-track score editor with treble and bass clef support
@@ -43,26 +48,40 @@ Most notation software is a tool you *use*. ArkComposer is a tool you *talk to*.
 - Lyrics editor with per-measure editing
 - Multi-document tabs with independent undo/redo per tab
 
+### Edit Measure (MIDI)
+- Piano-roll style editor for note timing, duration, pitch, and velocity inside selected measures
+- Edit / Insert / Delete / Tie modes for fast repair without leaving the score workflow
+- Track-wide measure navigation slider for moving across the active track while staying in the same editor
+- Built-in playback controls for checking only the current track or all tracks
+- Velocity popup editor for shaping dynamics inside the current measure range
+- Designed for repeated measure cleanup and detailed note-level correction after generation or manual entry
+
 ### Track Management
 - Add, delete, merge, split (by pitch range), reorder tracks
 - Hide/show individual tracks
 - Per-track instrument settings: SoundFont, Program (0–127), MIDI Channel, Bank MSB/LSB, Volume, Pan, Percussion
 
 ### Compose Assist
-- **Chord Suggestions** — Analyzes melody, infers chords per measure
-- **Voice Leading** — Generates melodic lines with 11 tunable parameters  
-  (stepwise bias, tension use, cadence force, leap compensation, common tone hold, and more)
-- **Accompaniment Generator** — Arpeggio, Chord Beat, Drum Groove styles
-- **Melody Variation** — Inversion, retrograde, augmentation, pentatonic, passing-tone rich
-- **Rhythm Variation** — Genre-based and custom pattern reassignment
-- **Modes**: Pop, Jazz, Emotional, Functional, Circle of 5ths
+- `Rhythm` reassigns rhythm patterns to selected measures
+- `Melody` applies transforms such as inversion and other note-sequence variations
+- `Helper` groups chord suggestion, voice leading, accompaniment, and composition guidance
+- `AI Helper` groups AI-backed generation tools for voicing and accompaniment
+- Voice Leading provides tunable parameters for harmonic line shaping and chord motion
+- Accompaniment supports Arpeggio, Chord Beat, Drum Groove, and AI-driven styles
+
+### AI Voicing and AI Accompaniment
+- `AI Voicing` is available from the AI Helper menu and directly inside `Edit Measure (MIDI)`
+- Use `AI Voicing` when the current track already has harmonic intent but needs cleaner voicing, redistribution, or regeneration
+- `AI Accomp` inside `Edit Measure (MIDI)` generates accompaniment that follows the current melody and harmony while staying in the measure-edit workflow
+- AI accompaniment styles include `AI Chord Beat`, `AI Arpeggio`, `AI Free`, `AI Free (Melody Variation)`, and `AI Drum Beat`
+- Built-in ONNX and TinyGRU models can be selected from the app for local generation
 
 ### AI Integration via MCP
 - Full MCP server built into the app (stdio and TCP modes)
-- Compatible with **Claude Code** and any MCP-capable AI client
-- Compose through natural language: *"Add a jazz piano accompaniment in measures 5–8"*
-- Scope control: next measure / selected range / whole song
-- MCP exposes self-documentation — AI clients can fetch tool usage guides automatically
+- Compatible with **Claude Code** and other MCP-capable clients
+- Compose through natural language, then continue refining the result in the score editor or `Edit Measure (MIDI)`
+- Scope control includes targeted edits such as selected range and whole-song operations
+- MCP exposes self-documentation so connected AI clients can inspect available tools
 
 ### Audio & Export
 - Playback with SoundFont synthesis (.sf2)
@@ -77,7 +96,7 @@ Most notation software is a tool you *use*. ArkComposer is a tool you *talk to*.
 
 ---
 
-## 🤖 AI Composition via MCP
+## AI Composition via MCP
 
 ### Mode 1 — stdio (Claude Code) ✅ Tested
 
@@ -120,7 +139,7 @@ Then talk to Claude Code:
 
 ---
 
-## 📋 MCP Tool Surface
+## MCP Tool Surface
 
 ArkComposer exposes a full score editing API over MCP:
 
@@ -137,29 +156,24 @@ ArkComposer exposes a full score editing API over MCP:
 
 ---
 
-## 📦 Installation
+## Installation
 
 ### Requirements
 - Windows 10 / 11 (64-bit)
 - `lame.exe` in `Tools/` folder — required for MP3 export ([download](https://lame.sourceforge.io/))
 
 ### SoundFonts
+Place `.sf2` files in the `SoundFonts/` folder.  
 ArkComposer ships with:
-- `GeneralUser GS v1.471.sf2` — GeneralUser GS License v2.0 (S. Christian Collins)
-- `GeneralUser_GS_SoftSynth_v1.44.sf2` — GeneralUser GS License v2.0 (S. Christian Collins)
-
-Additional high-quality SoundFonts (optional):
-- [MuseScore General](https://ftp.osuosl.org/pub/musescore/soundfont/MuseScore_General/) — MIT License
-- [FluidR3 GM](https://member.keymusician.com/Member/FluidR3_GM/) — MIT License
-
-Place `.sf2` files in the `SoundFonts/` folder.
+- `MuseScore_General.sf2` — MIT License (S. Christian Collins)
+- `FluidR3_GM2.sf2` — MIT License (Frank Wen)
 
 ### Download
 👉 **[Latest Release](https://github.com/arkark2010arkark/ArkComposer/releases/latest)**
 
 ---
 
-## 🗺️ Roadmap
+## Roadmap
 
 - [ ] macOS / Linux support (C++ / JUCE core is cross-platform ready)
 - [ ] Cloud sync
@@ -168,13 +182,13 @@ Place `.sf2` files in the `SoundFonts/` folder.
 
 ---
 
-## 🙏 Credits
+## Credits
 
 | Component | Author | License |
 |-----------|--------|---------|
 | JUCE Framework | Raw Material Software | JUCE Starter |
-| GeneralUser GS v1.471.sf2 | S. Christian Collins | GeneralUser GS License v2.0 |
-| GeneralUser_GS_SoftSynth_v1.44.sf2 | S. Christian Collins | GeneralUser GS License v2.0 |
+| MuseScore_General.sf2 | S. Christian Collins (based on FluidR3 by Frank Wen) | MIT |
+| FluidR3_GM2.sf2 | Frank Wen | MIT |
 | FluidSynth | Peter Hanappe and contributors | LGPL 2.1 |
 | LAME MP3 Encoder | Mark Taylor and contributors | LGPL 2 |
 | SDL3 | Sam Lantinga and contributors | zlib |
@@ -184,7 +198,7 @@ See [`CREDITS.txt`](CREDITS.txt) for full details.
 
 ---
 
-## 📄 License
+## License
 
 ArkComposer is free to download and use.  
 Music created with ArkComposer may be used for personal or commercial purposes without restriction.  
