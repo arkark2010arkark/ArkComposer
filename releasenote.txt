@@ -1,5 +1,35 @@
 ArkComposer Release Notes
 
+Version 1.1.2.4
+Date: 2026-04-08
+
+Summary
+- Improved responsiveness when opening large score files, importing long MIDI files, and switching between long-document tabs.
+- Reduced long-score paint stalls by stopping unnecessary full-song chord-symbol recomputation during normal UI drawing.
+- Added visible progress overlays for save and export operations so long PDF/audio/image/MIDI writes no longer look like the program has frozen.
+
+Loading / Import / Layout
+- Opening score files and importing MIDI now show an immediate loading overlay instead of leaving the UI unresponsive with no feedback.
+- MIDI import now avoids over-expanding measure width from a small number of extremely dense measures, reducing oversized initial layout on imported songs.
+- Changing measure width now refreshes layout size and scroll bounds together, preventing large blank scroll space after the score becomes shorter.
+
+Tab Switching / UI Performance
+- Tab switching no longer forces unnecessary playback-song rebuilds when the player is idle.
+- Removed repeated AI-model discovery and unnecessary accompaniment-panel refresh work from tab activation.
+- Eliminated extra palette relayout work that had no user-visible benefit during document switches.
+
+Score Rendering Performance
+- Reworked top chord-symbol caching so normal score paint only computes the visible/front needed range first instead of rebuilding the whole song.
+- PDF page rendering now benefits from progressive chord-symbol cache expansion across pages instead of restarting full-score work on each draw.
+- Strengthened chord-symbol cache invalidation so edits only discard and rebuild the affected suffix rather than forcing broad recomputation.
+
+Save / Export Feedback
+- `Save`, `Save As`, score export (`PDF/PNG/JPG`), and audio/MIDI export (`WAV/MP3/MIDI`) now run file writing on a worker thread.
+- The score view keeps a `Saving...` overlay visible until the operation completes or fails, then shows the completion/failure dialog.
+- Added protection against overlapping save/export requests so only one persistence task runs at a time.
+
+========================================================================
+
 Version 1.1.2.3
 Date: 2026-04-08
 
