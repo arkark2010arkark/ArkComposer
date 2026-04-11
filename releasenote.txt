@@ -1,5 +1,41 @@
 ArkComposer Release Notes
 
+Version 1.1.3.7
+Date: 2026-04-11
+
+Summary
+- Added a categorized SoundFont preset browser with search functionality for faster instrument selection.
+- Added per-track SoundFont assignment so each track can use a different SoundFont file.
+- Improved playback reload logic so note edits are properly reflected when pressing Play.
+- Allowed clicking any measure to seek playback position regardless of editor mode while playing.
+- Improved harmony inference and accompaniment generation with automatic reference track switching and dissonance post-correction.
+- Added Measure Cleanup command that trims trailing empty measures and clears output filters from empty measures.
+- Instrument preview now uses a dedicated MIDI channel so different instruments sound correctly in the preset browser.
+
+SoundFont / Instrument
+- Each track can now be assigned a different SoundFont file; playback loads and applies per-track SoundFont settings independently.
+- Replaced the flat preset list with a two-panel browser: category list on the left and filtered presets on the right.
+- Added ten instrument categories (Keyboard, Guitar/Bass, Strings, Brass, Woodwind, Synth, Percussion/Drums, Ethnic, SFX, Other) with localized labels.
+- Presets are classified by GM program number for bank 0 and by name keywords for other banks.
+- Added a real-time search bar that filters presets by name across all categories.
+- Increased default browser size to 900x600 with resizable limits up to 1600x1200.
+- Instrument preview now plays on a dedicated MIDI channel (ch 15) so the selected preset is heard correctly instead of always playing the first track's instrument.
+
+Playback
+- Playback now detects note-level edits and forces a full song reload when content has changed, instead of reusing a stale cached snapshot.
+- Clicking a measure during playback now seeks to that position in any editor mode (Measure Select, Note Select, or Edit), not only in Measure Select mode.
+
+Harmony / Accompaniment
+- Improved harmony inference algorithm for more accurate chord estimation.
+- Improved melody reference track detection for accompaniment generation with automatic track switching during generation.
+- Added final dissonance post-correction pass during AI accompaniment to reduce clashing notes.
+
+Editing
+- Measure Cleanup now finds the last measure with notes across all tracks (previously only checked the melody track) and trims trailing empty measures accordingly.
+- Measure Cleanup now clears output filter automation from measures that contain no notes.
+
+========================================================================
+
 Version 1.1.2.4
 Date: 2026-04-08
 
