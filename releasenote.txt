@@ -1,5 +1,21 @@
 ArkComposer Release Notes
 
+Version 1.1.3.10
+Date: 2026-04-18
+
+Summary
+- Improved playback refresh so normal note edits no longer force broad reload paths before replay.
+- Refined output-filter reload handling to avoid unnecessary full playback reconstruction in more cases.
+- Reduced stale playback cases by separating note, filter, and routing updates into more targeted refresh paths.
+
+Playback / Reload
+- Added targeted playback dirty-state handling so note edits, output-filter edits, and routing changes are refreshed through different reload paths.
+- Note-only edits now rebuild playback events without redoing heavier routing/filter rebuild work.
+- Output-filter updates now use a lighter refresh path more consistently instead of falling back to broad content reload behavior.
+- Prevented fast resume/replay from reusing stale playback data when pending edits still need to be applied.
+
+========================================================================
+
 Version 1.1.3.7
 Date: 2026-04-11
 
