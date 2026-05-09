@@ -1,5 +1,37 @@
 ArkComposer Release Notes
 
+Version 1.1.4.11
+Date: 2026-05-09
+
+Summary
+- Added ArkScore v3 compact song storage with the new `.ark` score file extension.
+- Improved MCP integration with separated compact read tools and a compact batch write tool for lower-token score editing.
+- Fixed major Compose Assist and accompaniment range issues so selected-measure operations no longer unexpectedly affect the whole song or start playback from the beginning.
+- Added track duplication for faster multi-instrument layering.
+- Improved Save, Save As, and export filename handling so common save/export workflows require fewer manual filename edits.
+
+File Format / Save
+- New saves use ArkScore v3 compact storage by default while legacy `.json`, `.arkscore`, and `.arkscore.json` files remain readable.
+- `Save As` now defaults to the `.ark` extension, and `.ark` files can be opened by dragging them from Explorer onto the app window.
+- `Save` now writes directly to the known current file path, while `Save As` and export dialogs prefill a useful title-based filename with the correct extension.
+- Save/export completion dialogs now show the full output path instead of truncating long filenames.
+
+MCP
+- Added compact score read tools for large-score inspection without changing the existing full-name read tools.
+- Added a compact batch note write tool for lower-token bulk composition/editing.
+- Clarified MCP tool contracts so normal tools and compact tools are not mixed.
+- Invalid MCP tool arguments now return a clear JSON-RPC error instead of causing HTTP/SSE timeout behavior.
+
+Compose Assist / Accompaniment
+- `Rhythm Pattern Change` now applies and auditions the selected measure range instead of unexpectedly playing from the beginning of the song.
+- Existing-track accompaniment changes now update only the selected measure range instead of rewriting the whole track.
+- Drum tracks now show drum-appropriate accompaniment options instead of unrelated arpeggio/chord-beat choices.
+
+Track Workflow
+- Added `Duplicate Track` so an existing line can be copied into a new track for layering or alternate instrumentation.
+
+========================================================================
+
 Version 1.1.3.10
 Date: 2026-04-18
 
