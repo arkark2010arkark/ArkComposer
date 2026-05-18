@@ -1,5 +1,6 @@
 # ArkComposer
 
+[![SafeSkill 50/100](https://img.shields.io/badge/SafeSkill-50%2F100_Use%20with%20Caution-orange)](https://safeskill.dev/scan/arkark2010arkark-arkcomposer)
 Current packaged release: **1.2.5.12**
 
 Windows score editor and AI-assisted composition workstation.
