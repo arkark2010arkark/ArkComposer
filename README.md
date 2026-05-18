@@ -1,5 +1,7 @@
 # ArkComposer
 
+Current packaged release: **1.2.5.12**
+
 Windows score editor and AI-assisted composition workstation.
 
 > Write, edit, arrange, and refine music in a full score editor, then use built-in AI tools or MCP-connected clients when you want generation help.
@@ -23,6 +25,7 @@ ArkComposer is a personal hobby project, built on weekends and spare moments, dr
 - Full score editing and composition tools live in one workflow instead of separate notation and generator apps
 - `Edit Measure (MIDI)` gives you a modeless piano-roll editor for precise measure-level repair, timing edits, velocity shaping, and AI-assisted rewriting
 - Built-in composition helpers cover rhythm, melody variation, chord suggestion, voice leading, accompaniment, and AI generation
+- Melody recording can capture microphone input or system sound playback and convert the detected melody into editable score notation
 - An MCP server is built into the app, so external AI clients can control the same score editor when needed
 - Visual analysis overlays and score-aware editing tools stay tied to the musical structure instead of raw MIDI only
 
@@ -64,6 +67,7 @@ ArkComposer is a personal hobby project, built on weekends and spare moments, dr
 ### Compose Assist
 - `Rhythm` reassigns rhythm patterns to selected measures
 - `Melody` applies transforms such as inversion and other note-sequence variations
+- Melody recording supports mic-in or sound playback capture, then converts the detected melody into editable score notes
 - `Helper` groups chord suggestion, voice leading, accompaniment, and composition guidance
 - `AI Helper` groups AI-backed generation tools for voicing and accompaniment
 - Voice Leading provides tunable parameters for harmonic line shaping and chord motion
@@ -85,10 +89,13 @@ ArkComposer is a personal hobby project, built on weekends and spare moments, dr
 
 ### Audio & Export
 - Playback with SoundFont synthesis (.sf2)
+- Record melody from microphone input or system sound playback and convert it to editable score notation
 - Export audio: **WAV** (lossless) / **MP3** (compressed, requires `lame.exe` in `Tools/`)
 - Export score: **PDF** / **PNG** / **JPG**
+- Export video: **MP4/H.264** with score frames, playback cursor, and optional AAC audio via bundled FFmpeg
 - Import / Export **MIDI**
-- Native save format: `.arkscore` / `.json` (human-readable)
+- Native save format: `.ark` using ArkScore v3 compact JSON
+- Legacy score formats remain readable: `.json`, `.arkscore`, `.arkscore.json`
 
 ### Plugin Filter Structure
 - Built-in audio effect filters (Distortion, Echo, and more)
@@ -145,13 +152,13 @@ ArkComposer exposes a full score editing API over MCP:
 
 | Category | Tools |
 |----------|-------|
-| Score reading | `get_score`, `get_score_range` |
-| Note editing | `add_note`, `add_notes_batch`, `change_note`, `delete_note` |
+| Score reading | `get_score`, `get_score_range`, `get_score_compact`, `get_score_range_compact` |
+| Note editing | `add_note`, `add_notes_batch`, `add_notes_compact`, `change_note`, `delete_note` |
 | Track management | `add_track`, `delete_track`, `set_track_props` |
 | Measure management | `add_measure`, `delete_measure`, `delete_measures_range`, `clear_measure`, `set_measure_props` |
 | Document | `new_song`, `set_title`, `undo` |
 
-> Full AI usage guide: [`docs/HowToUse_ArkComposerForLLM.md`](docs/HowToUse_ArkComposerForLLM.md)  
+> Full AI usage guide: [`docs/HowToUse_ArkCompoerForLLM.md`](docs/HowToUse_ArkCompoerForLLM.md)
 > Also available at runtime via MCP resource: `arkcomposer://docs/how-to-use-llm`
 
 ---
@@ -160,13 +167,14 @@ ArkComposer exposes a full score editing API over MCP:
 
 ### Requirements
 - Windows 10 / 11 (64-bit)
-- `lame.exe` in `Tools/` folder — required for MP3 export ([download](https://lame.sourceforge.io/))
+- MP3 export uses `Tools/lame.exe`.
+- MP4 video export uses `Tools/ffmpeg.exe`.
 
 ### SoundFonts
 Place `.sf2` files in the `SoundFonts/` folder.  
 ArkComposer ships with:
-- `MuseScore_General.sf2` — MIT License (S. Christian Collins)
-- `FluidR3_GM2.sf2` — MIT License (Frank Wen)
+- `GeneralUser GS v1.471.sf2` — GeneralUser GS License v2.0 (S. Christian Collins)
+- `GeneralUser_GS_SoftSynth_v1.44.sf2` — GeneralUser GS License v2.0 (S. Christian Collins)
 
 ### Download
 👉 **[Latest Release](https://github.com/arkark2010arkark/ArkComposer/releases/latest)**
@@ -187,14 +195,25 @@ ArkComposer ships with:
 | Component | Author | License |
 |-----------|--------|---------|
 | JUCE Framework | Raw Material Software | JUCE Starter |
-| MuseScore_General.sf2 | S. Christian Collins (based on FluidR3 by Frank Wen) | MIT |
-| FluidR3_GM2.sf2 | Frank Wen | MIT |
+| GeneralUser GS v1.471.sf2 | S. Christian Collins | GeneralUser GS License v2.0 |
+| GeneralUser_GS_SoftSynth_v1.44.sf2 | S. Christian Collins | GeneralUser GS License v2.0 |
 | FluidSynth | Peter Hanappe and contributors | LGPL 2.1 |
 | LAME MP3 Encoder | Mark Taylor and contributors | LGPL 2 |
+| FFmpeg | FFmpeg developers / Gyan.dev Windows build | GPLv3 for the bundled static essentials build |
+| Demucs / HTDemucs-6S ONNX model | Meta / Facebook Research; ONNX conversion artifact referenced by `Tools/demucs/manifest.json` | Demucs upstream MIT; preserve model/source attribution and applicable artifact terms |
+| ONNX Runtime | Microsoft and contributors | MIT |
 | SDL3 | Sam Lantinga and contributors | zlib |
 | libsndfile | Erik de Castro Lopo and contributors | LGPL 2.1 |
 
-See [`CREDITS.txt`](CREDITS.txt) for full details.
+See [`Credits.txt`](Credits.txt) for full details.
+
+### Third-Party License Notices
+
+- FFmpeg is included as a separate `Tools/ffmpeg.exe` executable for audio conversion/analysis workflows. The bundled binary reports a Gyan.dev essentials build configured with GPL/version3 options, so FFmpeg copyright, GPL terms, build/source availability, and upstream notices must be preserved when distributing ArkComposer.
+- Demucs / HTDemucs-6S is included as a local AI model asset for audio source-separation-assisted workflows. Keep the Demucs/Meta attribution, model artifact source information from `Tools/demucs/manifest.json`, and any applicable model artifact license notice with redistribution.
+- ONNX Runtime is included as `onnxruntime.dll` and `onnxruntime_providers_shared.dll` for local ONNX inference. Preserve the Microsoft/contributor attribution and MIT license notice.
+- GeneralUser GS SoundFont files are included as bundled sound assets. Preserve the S. Christian Collins attribution and the GeneralUser GS License v2.0 notice.
+- These third-party components are not owned by ArkComposer. Their licenses apply to their own binaries, libraries, models, and assets separately from the ArkComposer application license.
 
 ---
 

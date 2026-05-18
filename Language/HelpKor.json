@@ -34,7 +34,7 @@
     },
     "track": {
       "title": "트랙",
-      "body": "트랙 관리\n\n[추가/삭제]\n- 새 트랙 생성\n- 삭제는 체크리스트 팝업으로 여러 트랙을 한 번에 선택할 수 있습니다\n\n[숨기기/보이기]\n- 화면/재생 제외\n- 숨김 트랙 복원\n\n[트랙 도구]\n- 트랙 합치기 / 음역 분리 / 순서 이동 기능을 사용할 수 있습니다\n\n[트랙 정보]\n- 헤더 클릭으로 악기 설정\n- Program / Bank / Percussion / Volume / Pan 변경 가능\n\n[가사]\n- 마디 가사 더블클릭\n- Lyrics View/Edit로 일괄 편집"
+      "body": "트랙 관리\n\n[추가/삭제]\n- 새 트랙 생성\n- 삭제는 체크리스트 팝업으로 여러 트랙을 한 번에 선택할 수 있습니다\n\n[숨기기/보이기]\n- 화면/재생 제외\n- 숨김 트랙 복원\n\n[트랙 도구]\n- 트랙 복제 / 합치기 / 음역 분리 / 순서 이동 기능을 사용할 수 있습니다\n\n[트랙 정보]\n- 헤더 클릭으로 악기 설정\n- Program / Bank / Percussion / Volume / Pan 변경 가능\n\n[가사]\n- 마디 가사 더블클릭\n- Lyrics View/Edit로 일괄 편집"
     },
     "compose": {
       "title": "작곡",
@@ -42,7 +42,7 @@
     },
     "files": {
       "title": "파일",
-      "body": "파일 관리\n\n[명령]\n- 새 악보 / 열기 / 저장 / 다른 이름으로 저장 / 설정\n- PDF/PNG/JPG / WAV/MP3/MIDI 내보내기\n\n[형식]\n- JSON (.json / .arkscore)\n\n[설정]\n- 파일 > 설정에서 AppData 기반 프로그램 옵션과 UI 언어를 함께 편집할 수 있습니다\n\n[문제 확인]\n- SoundFont / 트랙 숨김 상태 / lame.exe 설정을 확인하세요"
+      "body": "파일 관리\n\n[명령]\n- 새 악보 / 열기 / 저장 / 다른 이름으로 저장 / 설정\n- PDF/PNG/JPG / WAV/MP3/MIDI / MP4 동영상 내보내기\n\n[형식]\n- ArkScore compact (.ark) / legacy JSON (.json / .arkscore)\n\n[설정]\n- 파일 > 설정에서 AppData 기반 프로그램 옵션과 UI 언어를 함께 편집할 수 있습니다\n\n[문제 확인]\n- SoundFont / 트랙 숨김 상태 / lame.exe / ffmpeg.exe 설정을 확인하세요"
     },
     "leftdock": {
       "title": "왼쪽 도크",

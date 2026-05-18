@@ -1,5 +1,32 @@
 ArkComposer Release Notes
 
+Version 1.2.5.12
+Date: 2026-05-18
+
+Summary
+- Added offline MP4 video export with score frames, playback cursor, optional audio, FFmpeg pipe streaming, progress display, cancel support, and improved H.264/AAC quality settings.
+- Expanded melody capture workflows for microphone and Windows system output, including spectral multi-lane capture and stem-assisted transcription.
+- Improved Demucs stem-to-note conversion with stem-specific pitch/rhythm analysis, drum onset handling, and confidence-aware harmonic cleanup.
+- Improved AI accompaniment and chord-beat harmony handling so chromatic harmony is preserved more reliably.
+- Updated release documentation and third-party notices for the current bundled files, including GeneralUser GS SoundFonts and ONNX Runtime.
+
+Video Export
+- `Export Video...` renders MP4/H.264 offline instead of recording the screen in real time.
+- Video export uses a song snapshot, cached score frame rendering, FFmpeg rawvideo stdin streaming, and optional AAC audio muxing.
+- Export progress now shows the current stage, frame count, percent, effective fps, elapsed time, and finalization state.
+- Cancel and watchdog handling reduce long-running or stalled FFmpeg export failures.
+
+Audio Capture / Transcription
+- `Capture Melody...` supports microphone input and Windows system sound output through WASAPI loopback.
+- System-output melody capture uses spectral analysis and can produce multiple vocal-range lanes.
+- Stem-assisted capture can generate separate bass, vocal, guitar, piano/other, and drum-oriented score tracks from Demucs output.
+- Captured stem notes use confidence-aware pitch cleanup only when a global key estimate is reliable.
+
+Documentation / Packaging
+- README, website index, and credits now describe `.ark` / ArkScore v3, MP4 video export, MCP compact tools, bundled GeneralUser GS SoundFonts, ONNX Runtime, FFmpeg, Demucs, and other third-party components more accurately.
+
+========================================================================
+
 Version 1.1.4.11
 Date: 2026-05-09
 

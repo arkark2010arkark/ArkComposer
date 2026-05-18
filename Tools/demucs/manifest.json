@@ -1,0 +1,74 @@
+{
+  "name": "HTDemucs-6S-ORT",
+  "format": "ort",
+  "version": "0.1.0",
+  "opset": 18,
+  "sample_rate_hz": 44100,
+  "window": 343980,
+  "hop": 171990,
+  "stems": [
+    "drums",
+    "bass",
+    "other",
+    "vocals",
+    "guitar",
+    "piano"
+  ],
+  "inputs": [
+    {
+      "name": "input",
+      "layout": "BCT",
+      "dtype": "f32",
+      "shape": [
+        "1",
+        "2",
+        "343980"
+      ]
+    },
+    {
+      "name": "x",
+      "layout": "BSCF",
+      "dtype": "f32",
+      "shape": [
+        "1",
+        "4",
+        "2048",
+        "336"
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "name": "output",
+      "layout": "BSCFT",
+      "dtype": "f32",
+      "shape": [
+        "1",
+        "6",
+        "4",
+        "2048",
+        "336"
+      ]
+    },
+    {
+      "name": "add_67",
+      "layout": "BSCT",
+      "dtype": "f32",
+      "shape": [
+        "1",
+        "6",
+        "2",
+        "343980"
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "htdemucs_6s.onnx",
+      "sha256": "35cb61d4d35173ff1d16df7393f41f05651ffdfe13d3c10e06abc26708bd6933",
+      "size_bytes": 114562080,
+      "url": "https://huggingface.co/Kani95/htdemucs-6s-ort/resolve/main/htdemucs_6s.onnx"
+    }
+  ],
+  "entry": "htdemucs_6s.onnx"
+}

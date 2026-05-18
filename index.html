@@ -421,6 +421,7 @@
     <li><a href="#mcp">MCP / AI</a></li>
     <li><a href="#builtin-ai">Built-in AI</a></li>
     <li><a href="#author">Author</a></li>
+    <li><a href="#credits">Credits</a></li>
     <li><a href="#download">Download</a></li>
     <li><a href="https://github.com/arkark2010arkark/ArkComposer" target="_blank">GitHub</a></li>
   </ul>
@@ -451,9 +452,9 @@
   <p class="hero-sub">A personal hobby project for AI-assisted composition</p>
   <p class="hero-desc">
     A personal hobby AI-driven Composer IDE with a built-in MCP server and a built-in AI that is still actively being trained.<br>
-    Now with a full piano-roll style <strong style="color:var(--text)">Edit Measure (MIDI)</strong> editor, direct <strong style="color:var(--text)">AI Voicing</strong> and <strong style="color:var(--text)">AI Accomp</strong> actions, a clearer top-bar workflow with status bar, and built-in update checking.<br>
+    Now with a full piano-roll style <strong style="color:var(--text)">Edit Measure (MIDI)</strong> editor, direct <strong style="color:var(--text)">AI Voicing</strong> and <strong style="color:var(--text)">AI Accomp</strong> actions, melody recording from mic-in or sound playback, a clearer top-bar workflow with status bar, and built-in update checking.<br>
     Connect Claude Code Desktop, Codex app, or any MCP-capable AI client and compose together in natural language.<br>
-    <span class="ko">개인적인 취미로 만드는 AI 기반 Composer IDE입니다. 피아노롤 스타일의 Edit Measure (MIDI) 편집기, AI Voicing·AI Accomp 직접 호출, 상태바가 포함된 새 상단 워크플로, 자동 업데이트 기능이 추가되었습니다. 악보 편집부터 AI 작곡까지 대화로 음악을 만들 수 있습니다.</span>
+    <span class="ko">개인적인 취미로 만드는 AI 기반 Composer IDE입니다. 피아노롤 스타일의 Edit Measure (MIDI) 편집기, AI Voicing·AI Accomp 직접 호출, 마이크 입력/사운드 재생 기반 멜로디 녹음 악보 변환, 상태바가 포함된 새 상단 워크플로, 자동 업데이트 기능이 추가되었습니다. 악보 편집부터 AI 작곡까지 대화로 음악을 만들 수 있습니다.</span>
   </p>
   <div class="hero-cta">
     <a href="#download" class="btn-primary">↓ Download Free &nbsp;·&nbsp; 무료 다운로드</a>
@@ -507,10 +508,22 @@
       <div class="feature-desc">Inversion, retrograde, augmentation, pentatonic, passing tones. Genre-based rhythm patterns.<br><br>전위, 역행, 확대, 5음 음계, 경과음. 장르별 리듬 패턴 변주.</div>
     </div>
     <div class="feature-card reveal">
+      <div class="feature-icon">🎙️</div>
+      <div class="feature-name">Melody Recording to Score</div>
+      <div class="feature-name-ko">멜로디 녹음 악보 변환</div>
+      <div class="feature-desc">Record melody from mic input or system sound playback, analyze the pitch flow, and convert the result into editable score notation.<br><br>마이크 입력 또는 PC에서 재생되는 사운드를 녹음해 멜로디 흐름을 분석하고, 편집 가능한 악보 음표로 변환합니다.</div>
+    </div>
+    <div class="feature-card reveal">
       <div class="feature-icon">🎹</div>
       <div class="feature-name">SoundFont Playback</div>
       <div class="feature-name-ko">사운드폰트 재생</div>
-      <div class="feature-desc">Per-track instrument assignment with .sf2 SoundFont support. Enlarged volume controls, improved transport. Export to WAV and MP3 (higher quality).<br><br>트랙별 악기 지정, SF2 사운드폰트 지원. 개선된 볼륨 컨트롤·재생 흐름. WAV/MP3 고품질 내보내기.</div>
+      <div class="feature-desc">Per-track instrument assignment with .sf2 SoundFont support. Enlarged volume controls, improved transport. Export to WAV and MP3.<br><br>트랙별 악기 지정, SF2 사운드폰트 지원. 개선된 볼륨 컨트롤·재생 흐름. WAV/MP3 내보내기.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">🎬</div>
+      <div class="feature-name">MP4 Video Export</div>
+      <div class="feature-name-ko">MP4 동영상 내보내기</div>
+      <div class="feature-desc">Offline MP4/H.264 rendering with score frames, playback cursor, and optional AAC audio through bundled FFmpeg.<br><br>악보 화면, 재생 커서, 선택적 AAC 오디오를 포함한 오프라인 MP4/H.264 동영상 내보내기. 번들 FFmpeg를 사용합니다.</div>
     </div>
     <div class="feature-card reveal">
       <div class="feature-icon">📊</div>
@@ -528,7 +541,7 @@
       <div class="feature-icon">📑</div>
       <div class="feature-name">Score Export</div>
       <div class="feature-name-ko">악보 내보내기</div>
-      <div class="feature-desc">Export your score as PDF, PNG, or JPG. Native format: .arkscore / .json (human-readable).<br><br>PDF, PNG, JPG로 악보 내보내기. 자체 포맷 .arkscore / .json.</div>
+      <div class="feature-desc">Export your score as PDF, PNG, or JPG. Native score format: .ark using ArkScore v3 compact JSON. Legacy .json/.arkscore files remain readable.<br><br>PDF, PNG, JPG로 악보 내보내기. 기본 저장 형식은 ArkScore v3 compact JSON 기반 .ark이며, 기존 .json/.arkscore 파일도 읽을 수 있습니다.</div>
     </div>
     <div class="feature-card reveal">
       <div class="feature-icon">🎛️</div>
@@ -764,8 +777,8 @@ localhost:<span class="val">9100</span>
         </li>
         <li>
           <div>
-            Built-in ONNX and TinyGRU models run locally — no internet required. Models improve as training progresses.
-            <span class="ko">내장 ONNX 및 TinyGRU 모델은 로컬에서 동작하며 인터넷 없이 사용 가능. 학습에 따라 지속 개선.</span>
+            Built-in ONNX, TinyGRU, and Demucs-based audio models run locally — no internet required. Models improve as training progresses.
+            <span class="ko">내장 ONNX, TinyGRU, Demucs 기반 오디오 모델은 로컬에서 동작하며 인터넷 없이 사용 가능. 학습에 따라 지속 개선.</span>
           </div>
         </li>
       </ul>
@@ -788,11 +801,11 @@ localhost:<span class="val">9100</span>
     <tbody>
       <tr>
         <td style="color:var(--text); font-size:11px;">Score Reading<br><span style="color:var(--text3); font-size:10px;">악보 읽기</span></td>
-        <td><span class="tool-tag">get_score</span><span class="tool-tag">get_score_range</span></td>
+        <td><span class="tool-tag">get_score</span><span class="tool-tag">get_score_range</span><span class="tool-tag">get_score_compact</span><span class="tool-tag">get_score_range_compact</span></td>
       </tr>
       <tr>
         <td style="color:var(--text); font-size:11px;">Note Editing<br><span style="color:var(--text3); font-size:10px;">음표 편집</span></td>
-        <td><span class="tool-tag">add_note</span><span class="tool-tag">add_notes_batch</span><span class="tool-tag">change_note</span><span class="tool-tag">delete_note</span></td>
+        <td><span class="tool-tag">add_note</span><span class="tool-tag">add_notes_batch</span><span class="tool-tag">add_notes_compact</span><span class="tool-tag">change_note</span><span class="tool-tag">delete_note</span></td>
       </tr>
       <tr>
         <td style="color:var(--text); font-size:11px;">Track Management<br><span style="color:var(--text3); font-size:10px;">트랙 관리</span></td>
@@ -853,12 +866,49 @@ localhost:<span class="val">9100</span>
   </div>
 </section>
 
+<!-- THIRD-PARTY CREDITS -->
+<section class="tools-section" id="credits">
+  <div class="section-divider reveal"><span class="section-label">Third-Party Credits &nbsp;·&nbsp; 외부 라이선스 고지</span></div>
+  <h2 class="tools-title reveal">Credits and notices.</h2>
+  <p class="tools-title-ko reveal">사용한 외부 구성 요소와 의무 고지.</p>
+  <table class="tools-table reveal">
+    <thead>
+      <tr>
+        <th>Component &nbsp;·&nbsp; 구성 요소</th>
+        <th>Notice &nbsp;·&nbsp; 고지</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="color:var(--text); font-size:11px;">FFmpeg<br><span style="color:var(--text3); font-size:10px;">Tools/ffmpeg.exe</span></td>
+        <td>Bundled as a separate Gyan.dev Windows essentials executable for audio conversion and analysis workflows. The included build reports GPL/version3 configuration, so FFmpeg copyright, GPL terms, source/build availability, and upstream notices must be preserved.<br><span style="color:var(--text3); font-size:10px;">오디오 변환/분석을 위한 별도 실행 파일로 포함됩니다. 포함 빌드는 GPL/version3 설정을 보고하므로 FFmpeg 저작권, GPL 조건, 소스/빌드 정보, 상위 고지를 유지해야 합니다.</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--text); font-size:11px;">Demucs / HTDemucs-6S<br><span style="color:var(--text3); font-size:10px;">Tools/demucs/htdemucs_6s.onnx</span></td>
+        <td>Local AI model asset for source-separation-assisted audio workflows. Preserve Demucs / Meta / Facebook Research attribution, the model artifact source listed in <code style="color:var(--accent); font-size:10px;">Tools/demucs/manifest.json</code>, and any applicable model artifact license notice when redistributing.<br><span style="color:var(--text3); font-size:10px;">음원 분리 보조 워크플로에 사용하는 로컬 AI 모델입니다. 재배포 시 Demucs / Meta / Facebook Research 출처, manifest의 모델 출처, 해당 모델 artifact 라이선스 고지를 유지해야 합니다.</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--text); font-size:11px;">ONNX Runtime<br><span style="color:var(--text3); font-size:10px;">onnxruntime.dll</span></td>
+        <td>Bundled for local ONNX inference under the Microsoft/contributor MIT license. Preserve the ONNX Runtime attribution and MIT license notice.<br><span style="color:var(--text3); font-size:10px;">로컬 ONNX 추론을 위해 포함됩니다. Microsoft 및 contributor 출처와 MIT 라이선스 고지를 유지해야 합니다.</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--text); font-size:11px;">GeneralUser GS SoundFonts<br><span style="color:var(--text3); font-size:10px;">SoundFonts/*.sf2</span></td>
+        <td>Bundled SoundFonts are third-party sound assets by S. Christian Collins under the GeneralUser GS license terms. Preserve attribution and license notice when redistributing the SoundFont files.<br><span style="color:var(--text3); font-size:10px;">번들 사운드폰트는 S. Christian Collins의 외부 사운드 자산입니다. 재배포 시 출처와 GeneralUser GS 라이선스 고지를 유지해야 합니다.</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--text); font-size:11px;">Other bundled components<br><span style="color:var(--text3); font-size:10px;">JUCE, FluidSynth, LAME, SDL3, libsndfile</span></td>
+        <td>See <code style="color:var(--accent); font-size:10px;">Credits.txt</code> and <code style="color:var(--accent); font-size:10px;">README.md</code> for the full third-party component list. These components are owned by their respective authors and are licensed separately from ArkComposer.<br><span style="color:var(--text3); font-size:10px;">전체 외부 구성 요소 목록은 Credits.txt와 README.md를 확인하세요. 각 구성 요소는 원 저작자에게 권리가 있으며 ArkComposer와 별도 라이선스가 적용됩니다.</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
 <!-- DOWNLOAD -->
 <section class="download-section" id="download">
   <div class="download-inner reveal">
     <h2 class="download-title">Download</h2>
     <p class="download-title-ko">무료 다운로드</p>
-    <p class="download-desc" style="margin-bottom:4px;">Latest public release for Windows 10 / 11</p>
+    <p class="download-desc" style="margin-bottom:4px;">Latest public release for Windows 10 / 11 · Version 1.2.5.12</p>
     <p class="download-desc">Windows 10 / 11 (64-bit) &nbsp;·&nbsp; Free for all use</p>
     <p class="download-desc-ko">
       개인 및 상업적 목적 모두 무료 사용 가능<br>

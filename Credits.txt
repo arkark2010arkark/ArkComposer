@@ -1,45 +1,100 @@
-ArkComposer — Third-Party Credits
-==================================
+ArkComposer - Third-Party Credits and Notices
+============================================
+
+This file lists the third-party components bundled with the public
+ArkComposer release package. These components are owned by their
+respective authors and are licensed separately from ArkComposer.
+
+Packaged release checked: ArkComposer 1.2.5.12
 
 JUCE Framework
   Author  : Raw Material Software / JUCE Team
   License : JUCE 8 Starter License (free tier, revenue < $50k/year)
   URL     : https://juce.com
 
-FluidSynth (fluidsynth.exe, libfluidsynth-3.dll)
+ONNX Runtime (onnxruntime.dll, onnxruntime_providers_shared.dll)
+  Author  : Microsoft and contributors
+  License : MIT License
+  URL     : https://github.com/microsoft/onnxruntime
+  Notice  : Bundled for local ONNX inference. Preserve Microsoft and
+            contributor attribution and the MIT license notice.
+
+FluidSynth (Tools/fluidsynth.exe, Tools/libfluidsynth-3.dll)
   Author  : Peter Hanappe and contributors
   License : GNU Lesser General Public License v2.1 (LGPL)
   URL     : https://github.com/FluidSynth/fluidsynth
 
-LAME MP3 Encoder (lame.exe)
+LAME MP3 Encoder (Tools/lame.exe)
   Author  : Mike Cheng, Mark Taylor, and contributors
   License : GNU Lesser General Public License v2 (LGPL)
   URL     : https://lame.sourceforge.io
 
-SDL3 (SDL3.dll)
+FFmpeg (Tools/ffmpeg.exe)
+  Author  : FFmpeg developers / Gyan.dev Windows build
+  License : GPLv3 for the bundled static essentials build
+  URL     : https://ffmpeg.org / https://www.gyan.dev/ffmpeg/builds/
+  Notice  : Bundled as a separate executable. Preserve FFmpeg copyright,
+            GPL terms, build/source availability information, and upstream
+            notices when redistributing ArkComposer.
+
+SDL3 (Tools/SDL3.dll)
   Author  : Sam Lantinga and contributors
   License : zlib License
   URL     : https://libsdl.org
 
-libsndfile (sndfile.dll)
+libsndfile (Tools/sndfile.dll)
   Author  : Erik de Castro Lopo and contributors
   License : GNU Lesser General Public License v2.1 (LGPL)
   URL     : https://libsndfile.github.io/libsndfile/
 
-MuseScore_General.sf2
-  Author  : S. Christian Collins (based on FluidR3 by Frank Wen)
-  License : MIT License
-  URL     : https://github.com/musescore/MuseScore/tree/master/share/sound
+GeneralUser GS v1.471.sf2
+  File    : SoundFonts/GeneralUser GS v1.471.sf2
+  Author  : S. Christian Collins
+  License : GeneralUser GS License v2.0
+  URL     : https://www.schristiancollins.com/generaluser.php
+  Notice  : May be used for personal or commercial music creation under
+            the GeneralUser GS license. Preserve author attribution and
+            license notice when redistributing the SoundFont.
 
-FluidR3_GM2.sf2
-  Author  : Frank Wen
-  License : MIT License
-  URL     : https://www.fluidsynth.org
+GeneralUser GS SoftSynth v1.44
+  File    : SoundFonts/GeneralUser_GS_SoftSynth_v1.44.sf2
+  Author  : S. Christian Collins
+  License : GeneralUser GS License v2.0 family / upstream GeneralUser GS terms
+  URL     : https://www.schristiancollins.com/generaluser.php
+  Notice  : Preserve author attribution and license notice when
+            redistributing the SoundFont.
+
+Demucs / HTDemucs-6S ONNX model (Tools/demucs/htdemucs_6s.onnx)
+  Author  : Meta / Facebook Research; ONNX conversion artifact referenced
+            by Tools/demucs/manifest.json
+  License : Demucs upstream MIT; preserve model/source attribution and
+            applicable model artifact terms
+  URL     : https://github.com/facebookresearch/demucs
+  Artifact: https://huggingface.co/Kani95/htdemucs-6s-ort
 
 ------------------------------------------------------------------
 LGPL notice:
 Users of ArkComposer may replace the LGPL-licensed libraries
 (FluidSynth, LAME, libsndfile) with their own builds if desired.
-These libraries are provided as separate .dll / .exe files
-and are not statically linked into ArkComposer.exe.
+These libraries are provided as separate .dll / .exe files and are
+not statically linked into ArkComposer.exe.
 ------------------------------------------------------------------
+
+FFmpeg notice:
+The bundled FFmpeg executable is separate from ArkComposer.exe. The
+included binary reports GPL/version3 configuration, so FFmpeg's own
+GPL terms and source/build notice obligations apply to that binary.
+For FFmpeg source and build information, see:
+  https://ffmpeg.org
+  https://www.gyan.dev/ffmpeg/builds/
+
+AI model notice:
+Demucs / HTDemucs-6S model files are third-party AI model assets. They
+are not owned by ArkComposer and must retain their attribution, source,
+and applicable model artifact license notices when redistributed.
+
+SoundFont notice:
+Bundled GeneralUser GS SoundFont files are third-party sound assets.
+They are not owned by ArkComposer. Preserve S. Christian Collins
+attribution and the GeneralUser GS license notice when redistributing
+the SoundFont files.
